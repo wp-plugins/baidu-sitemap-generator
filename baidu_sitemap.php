@@ -247,8 +247,8 @@ function build_baidu_sitemap() {
 		baidu_sitemap_topbarmessage(__('Directory is not writable. please chmod your directory to 777.','baidu_sitemap'));
 	}
 
- //baidu_sitemap_is_auto(); 
  if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
+ baidu_sitemap_is_auto(); 
 }
 	
 
