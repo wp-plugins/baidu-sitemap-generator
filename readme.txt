@@ -20,7 +20,7 @@ Related Links:
 * <a href="http://www.liucheng.name/?p=884" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
 * <a href="http://www.liucheng.name/?p=883">Report a BUG</a>
 * <a href="http://www.liucheng.name/?p=883">Suggest a Feature</a>
-* <a href="http://www.liucheng.name/?p=876">诚意邀请您参与测试!</a>
+* <a href="http://www.liucheng.name/?p=876">诚意邀请您参与测试!(重要)</a>
 
 
 
