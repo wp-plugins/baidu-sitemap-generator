@@ -125,8 +125,8 @@ msgid "Congratulate, Build the XML file success"
 msgstr ""
 
 # baidu_sitemap.php:246
-#: 文件或目录不可写，请在网站根目录下手动创建 sitemap_baidu.xml ，文件权限改为666或更高。
-msgid "Directory is not writable. please Build the XML file named sitemap_baidu.xml by yourself. and chmod sitemap_baidu.xml 666."
+#: 文件或目录不可写，请修改根目录文件夹权限改为777。
+msgid "Directory is not writable. please chmod root directory to 777."
 msgstr ""
 
 # sitemap-function.php:177
@@ -152,6 +152,11 @@ msgstr ""
 # sitemap-function.php:189
 #: 你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。
 msgid "你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。"
+msgstr ""
+
+# sitemap-function.php:189
+#: 注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。
+msgid "注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。"
 msgstr ""
 
 # sitemap-function.php:191

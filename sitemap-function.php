@@ -4,7 +4,7 @@ $lc_author = 'zhenglc';
 $lc_authorurl = 'http://www.liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
 $lc_pluginversion = '0.7';
-$lc_pluginurl = 'http://www.liucheng.name/';
+$lc_pluginurl = 'http://www.liucheng.name/?p=883';
 
 /**  End **/
 
@@ -184,9 +184,9 @@ function xml_file_exist() {
 		_e('当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。','baidu_sitemap');
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
-		//echo '<p>'; _e('文件创建时间：','baidu_sitemap'); print $filctime.'</p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。','baidu_sitemap'); print '</p>';
+		echo '<p>'; _e('注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('学习更多','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Bdidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
@@ -390,7 +390,7 @@ function lc_sidebar() {
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_authorurl;?>"><?php _e('zhenglc(Author Homepage)','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Plugin Homepage','baidu_sitemap');?></a>
                         <a class="lc_button lc_resBaidu" href="http://www.liucheng.name/?p=876"><?php _e('Baidu-Sitemap Protocol','baidu_sitemap');?></a>
-						<a class="lc_button lc_resRss" href="<?php echo $lc_pluginurl;?>"><?php _e('FAQ','baidu_sitemap');?></a>
+						<a class="lc_button lc_resRss" href="http://www.liucheng.name/?p=884"><?php _e('FAQ','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginBugs" href="<?php echo $lc_pluginurl;?>"><?php _e('Report a Bug','baidu_sitemap');?></a>
 						<a class="lc_button lc_donateFavorite" href="<?php echo $lc_pluginurl;?>"><?php _e('Suggest a Feature','baidu_sitemap');?></a>
 				</div>
@@ -399,14 +399,14 @@ function lc_sidebar() {
 	     <div id="lc_smres" class="postbox">
 			<h3 class="hndle"><span ><?php _e('Donations: ','baidu_sitemap');?></span></h3>
 			  <div class="inside">
-			            <a class="lc_button lc_resWordpress" href="<?php echo $lc_authorurl;?>"><?php _e('Not yet. you would be the first!','baidu_sitemap');?></a>
+			            <a class="lc_button lc_resWordpress" href="<?php echo $lc_pluginurl;?>"><?php _e('Not yet. you would be the first!','baidu_sitemap');?></a>
 				</div>
 			</div>
 
 	     <div id="lc_smres" class="postbox">
 			<h3 class="hndle"><span ><?php _e('Multi-Language Support: ','baidu_sitemap');?></span></h3>
 			  <div class="inside">
-			            <a class="lc_button lc_resRss" href="<?php echo $lc_authorurl;?>"><?php _e('English','baidu_sitemap');?></a>
+			            <a class="lc_button lc_resRss" href="<?php echo $lc_pluginurl;?>"><?php _e('English','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Simplified Chinese','baidu_sitemap');?></a>
                         <a class="lc_button lc_resRss" href="<?php echo $lc_pluginurl;?>"><?php _e('Traditional Chinese','baidu_sitemap');?></a>
 						<a class="lc_button lc_resRss" href="<?php echo $lc_pluginurl;?>"><?php _e('Japanese','baidu_sitemap');?></a>
@@ -417,7 +417,7 @@ function lc_sidebar() {
 	     <div id="lc_smres" class="postbox">
 			<h3 class="hndle"><span ><?php _e('My Other Plugin:','baidu_sitemap');?></span></h3>
 			  <div class="inside">
-			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_authorurl;?>"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
+			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://www.liucheng.name/?p=789"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
 				</div>
 			</div>
