@@ -5,7 +5,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://www.liucheng.name/?p=883
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
 Author: 柳城博客
-Version: 0.8
+Version: 0.8.1
 Author URI: http://www.liucheng.name/
 
 
@@ -225,7 +225,6 @@ function build_baidu_sitemap() {
 		   if($lc_post_length=='1'){ $xml_middle .= '<bbs:mainLen>'.$post_content_str.'</bbs:mainLen>'."\n"; }
 		   if($lc_post_cat=='1'){  $xml_middle .= '<bbs:boardid>'.$my_cat.'</bbs:boardid>'."\n"; }
 		   $xml_middle .= '</item>'."\n";
-           $xml_middle_done = "";
            $xml_middle_done .= $xml_middle;
 		}
 	}
