@@ -125,8 +125,8 @@ msgid "Congratulate, Build the XML file success"
 msgstr ""
 
 # baidu_sitemap.php:246
-#: 文件或目录不可写，请修改根目录文件夹权限改为777。
-msgid "Directory is not writable. please chmod root directory to 777."
+#: 文件或目录不可写，请修改目录权限改为777。
+msgid "Directory is not writable. please chmod your directory to 777."
 msgstr ""
 
 # sitemap-function.php:177
@@ -161,7 +161,7 @@ msgstr ""
 
 # sitemap-function.php:191
 #: 还没有创建百度Sitemap文件呢
-msgid "Bdidu Sitemap File is not Exist, please Write a normal XML file."
+msgid "Baidu Sitemap File is not Exist, please Write a normal XML file."
 msgstr ""
 
 # sitemap-function.php:388
@@ -255,7 +255,7 @@ msgid "Your sitemap will be refreshed in %s seconds!"
 msgstr ""
 
 # sitemap-function.php:444
-#: 没有激活自动生成XML文件,需手动更新。
+#: 没有激活自动生成XML文件,需手动更新。或还没有创建XML文件。
 msgid "Donot activate the Auto build the sitema options, you need build the XML file by yourself."
 msgstr ""
 

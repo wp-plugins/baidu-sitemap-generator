@@ -5,7 +5,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://www.liucheng.name/?p=883
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
 Author: 柳城博客
-Version: 0.7
+Version: 0.8
 Author URI: http://www.liucheng.name/
 
 
@@ -132,7 +132,7 @@ function update_baidu_sitemap() {
 		$lc_updatePeri = $_POST['lc_updatePeri'];
 		$lc_limits = $_POST['lc_limits'];
 		$lc_sitemap_auto = $_POST['lc_sitemap_auto'];
-		if(empty($lc_sitemap_auto)){ $lc_sitemap_auto = '0'; if(function_exists('wp_clear_scheduled_hook')) wp_clear_scheduled_hook('do_this_auto'); }
+		if(empty($lc_sitemap_auto)){ $lc_sitemap_auto = '0'; if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); } }
 		$lc_order_1 = $_POST['lc_order_1'];
 		$lc_order_2 = $_POST['lc_order_2'];
 		$lc_order_3 = $_POST['lc_order_3'];
@@ -225,6 +225,7 @@ function build_baidu_sitemap() {
 		   if($lc_post_length=='1'){ $xml_middle .= '<bbs:mainLen>'.$post_content_str.'</bbs:mainLen>'."\n"; }
 		   if($lc_post_cat=='1'){  $xml_middle .= '<bbs:boardid>'.$my_cat.'</bbs:boardid>'."\n"; }
 		   $xml_middle .= '</item>'."\n";
+           $xml_middle_done = "";
            $xml_middle_done .= $xml_middle;
 		}
 	}
@@ -244,11 +245,11 @@ function build_baidu_sitemap() {
 		baidu_sitemap_topbarmessage(__('Congratulate, Build the XML file success','baidu_sitemap'));
 	}else{ 
 		/** Messages  **/
-		baidu_sitemap_topbarmessage(__('Directory is not writable. please chmod root directory to 777.','baidu_sitemap'));
+		baidu_sitemap_topbarmessage(__('Directory is not writable. please chmod your directory to 777.','baidu_sitemap'));
 	}
 
- wp_clear_scheduled_hook('do_this_auto');   
  //baidu_sitemap_is_auto(); 
+ if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
 }
 	
 

@@ -3,7 +3,7 @@
 $lc_author = 'zhenglc';
 $lc_authorurl = 'http://www.liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '0.7';
+$lc_pluginversion = '0.8';
 $lc_pluginurl = 'http://www.liucheng.name/?p=883';
 
 /**  End **/
@@ -186,9 +186,10 @@ function xml_file_exist() {
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。','baidu_sitemap'); print '</p>';
-		echo '<p>'; _e('注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('学习更多','baidu_sitemap'); echo '</a>'; print '</p>';
+		echo '<p>'; _e('注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
-		_e('Bdidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
+		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
+		//if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
 	}
 	echo '</div>';
 }
@@ -470,7 +471,7 @@ function advanced_options() {
 		<option value="post_date" <?php if($lc_order_3=='post_date'){ echo 'selected'; } ?> ><?php _e('Post_Date','baidu_sitemap');?></option>
 		<option value="post_modified" <?php if($lc_order_3=='post_modified'){ echo 'selected'; } ?> ><?php _e('Modified_Date','baidu_sitemap');?></option>
 		<option value="comment_date" <?php if(empty($get_baidu_sitemap_options) || $lc_order_3=='comment_date'){ echo 'selected'; } ?> ><?php _e('Comment_Date','baidu_sitemap');?></option>
-		</select></td><td> <a href="<?php echo $lc_authorurl;?>"><?php _e('Learn More','baidu_sitemap');?></a><td></tr>
+		</select></td><td> <a href="http://www.liucheng.name/?p=884"><?php _e('Learn More','baidu_sitemap');?></a><td></tr>
 		<tr><td><label for="lc_comments"><?php _e('CommentCount/Date','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_comments" name="lc_comments" value="1" <?php if($lc_comments=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:lastDate> and <bbs:reply> label, not require','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_length"><?php _e('Post strlen(Unit/byte)','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_length" name="lc_post_length" value="1" <?php if($lc_post_length=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:mainLen> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_cat"><?php _e('Post Category','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_cat" name="lc_post_cat" value="1" <?php if($lc_post_cat=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:boardid> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
