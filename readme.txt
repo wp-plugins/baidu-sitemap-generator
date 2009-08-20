@@ -12,6 +12,11 @@ Baidu Sitemap Generator
 This pulgin generates a Baidu XML-Sitemap for WordPress Blog. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
 
 
+V1.0 预告
+
+ *生成一个静态的站点地图页面
+ *对所有搜索引擎都有利
+
 
 Related Links:
 
@@ -33,9 +38,10 @@ Related Links:
 == Installation ==
 
 (1) unzip the baidu-sitemap-generator.zip file in /wp-content/plugins
+
 (2) Active the plugin 
 
-Baidu—Sitemap 
+Baidu—Sitemap-Generator for WordPress
 
 
 == Translations ==

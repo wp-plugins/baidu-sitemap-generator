@@ -10,87 +10,87 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-# baidu_sitemap.php:54
+# baidu_sitemap.php:55
 #: 参数配置
 msgid "Preferences"
 msgstr "参数配置"
 
-# baidu_sitemap.php:55
-#: 百度Sitemap的基本参数配置。以后将会根据需要丰富选项。 每次升级插件后，务必重新更新配置和更新 XML-Sitemap 文件。
-msgid "百度Sitemap的基本参数配置。以后将会根据需要丰富选项。 每次升级插件后，务必重新更新配置和更新 XML-Sitemap 文件。"
-msgstr "百度Sitemap的基本参数配置。以后将会根据需要丰富选项。 每次升级插件后，务必重新更新配置和更新 XML-Sitemap 文件。"
+# baidu_sitemap.php:56
+#: 百度Sitemap的基本参数配置。以后将会根据需要丰富选项。
+msgid "Parameter setting for Baidu Sitemap Generator Plugin. "
+msgstr "百度Sitemap的基本参数配置。以后将会根据需要丰富选项。"
 
-# baidu_sitemap.php:59
+# baidu_sitemap.php:60
 #: 基本配置
 msgid "General Options"
 msgstr "基本配置"
 
-# baidu_sitemap.php:60
+# baidu_sitemap.php:61
 #: 博客主页
 msgid "Blog Homepage"
 msgstr "博客主页"
 
-# baidu_sitemap.php:60
+# baidu_sitemap.php:61
 #: 最好不要以/结束
-msgid "最好不要以/结束"
+msgid "The end without / symbol"
 msgstr "最好不要以/结束"
 
-# baidu_sitemap.php:61
+# baidu_sitemap.php:62
 #: 管理员邮箱
-msgid "Email"
+msgid "Manager Email"
 msgstr "管理员邮箱"
 
-# baidu_sitemap.php:61
+# baidu_sitemap.php:62
 #: 如有需要，百度将会通过此Email跟你联系
 msgid "Baidu will contact you use this Email if necessary"
 msgstr "如有需要，百度将会通过此Email跟你联系"
 
-# baidu_sitemap.php:62
+# baidu_sitemap.php:63
 #: 更新周期(单位：小时)
-msgid "更新周期(单位：小时)"
+msgid "Update Period(hour)"
 msgstr "更新周期(单位：小时)"
 
-# baidu_sitemap.php:62
+# baidu_sitemap.php:63
 #: 24小时/每天更新一次是比较合适的值。除非你的站每天有大量的文章发表。
-msgid "24小时/每天更新一次是比较合适的值。除非你的站每天有大量的文章发表。"
+msgid "Updated in 24 hour is more suitable. Unless you publish a lot of post one day."
 msgstr "24小时/每天更新一次是比较合适的值。除非你的站每天有大量的文章发表。"
 
-# baidu_sitemap.php:63
+# baidu_sitemap.php:64
 #: 文章数量
 msgid "Post Count"
 msgstr "文章数量"
 
-# baidu_sitemap.php:63
-#: 只需要将最近一个更新周期内新增的和变化了的文章包含在XML页面上，过多的数量只会增加服务器的负担
-msgid "只需要将最近一个更新周期内新增的和变化了的文章包含在XML页面上，过多的数量只会增加服务器的负担"
-msgstr "只需要将最近一个更新周期内新增的和变化了的文章包含在XML页面上，过多的数量只会增加服务器的负担"
-
 # baidu_sitemap.php:64
+#: 只需要将最近一个更新周期内新增的和变化了的文章包含在XML页面上，过多的数量只会增加服务器的负担。
+msgid "XML file just need include the Recent Post and Update Post. Needs much more memory if increase the Post Count."
+msgstr "只需要将最近一个更新周期内新增的和变化了的文章包含在XML页面上，过多的数量只会增加服务器的负担。"
+
+# baidu_sitemap.php:65
 #: 在后台自动更新 sitemap 文件
 msgid "Auto build the sitemap"
 msgstr "在后台自动更新 sitemap 文件"
 
-# baidu_sitemap.php:67
+# baidu_sitemap.php:68
 #: 第一次先激活参数配置
 msgid "Active the options first"
 msgstr "第一次先激活参数配置"
 
-# baidu_sitemap.php:67
+# baidu_sitemap.php:68
 #: 更新配置
 msgid "Update options"
 msgstr "更新配置"
 
-# baidu_sitemap.php:73,79
+# baidu_sitemap.php:74,80
 #: 生成XML文件
 msgid "Write a XML file"
 msgstr "生成XML文件"
 
-# baidu_sitemap.php:74
+# baidu_sitemap.php:75
 #: 激活配置后，在这里创建XML文件。或更新配置后，请手动重建sitemap文件。
 msgid "When active the options, you can create a XML file here. or Rebulid the sitemap file after update options or other else."
 msgstr "激活配置后，在这里创建XML文件。或更新配置后，请手动重建sitemap文件。"
 
-# baidu_sitemap.php:79
+# baidu_sitemap.php:80
 #: 更新 XML 文件
 msgid "Update XML file"
 msgstr "更新 XML 文件"
@@ -100,22 +100,23 @@ msgstr "更新 XML 文件"
 msgid "There is nothing to do, Please Active the options first."
 msgstr "还没有呢，先激活配置。"
 
-# baidu_sitemap.php:112
-#: 生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
-msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog."
+# baidu_sitemap.php:113
+#: 生成百度Sitemap XML
+#: 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
+msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog. And Build a real Static Sitemap-Page for all Search Engine."
 msgstr "生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。"
 
-# baidu_sitemap.php:143
+# baidu_sitemap.php:164
 #: 恭喜, 更新配置成功
 msgid "Congratulate, Update options success"
 msgstr "恭喜, 更新配置成功"
 
-# baidu_sitemap.php:243
+# baidu_sitemap.php:310
 #: 恭喜, 生成百度 Sitemap 文件成功
 msgid "Congratulate, Build the XML file success"
 msgstr "恭喜, 生成百度 Sitemap 文件成功"
 
-# baidu_sitemap.php:246
+# baidu_sitemap.php:313
 #: 文件或目录不可写，请修改目录权限改为777。
 msgid "Directory is not writable. please chmod your directory to 777."
 msgstr "文件或目录不可写，请修改目录权限改为777。"
@@ -127,7 +128,7 @@ msgstr "XML 文件状态"
 
 # sitemap-function.php:184
 #: 当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。
-msgid "当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。"
+msgid "When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file，or setting as 404 page."
 msgstr "当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。"
 
 # sitemap-function.php:186
@@ -135,25 +136,30 @@ msgstr "当您需要改变XML文件的路径或名称时(最好不要)，请将�
 msgid "Check XML-sitemap File: "
 msgstr "检查 XML 文件："
 
-# sitemap-function.php:188
+# sitemap-function.php:187
 #: 最后更新时间：
 msgid "Last updated: "
 msgstr "最后更新时间："
 
-# sitemap-function.php:189
+# sitemap-function.php:188
 #: 你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。
-msgid "你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。"
+msgid "You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML."
 msgstr "你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。"
 
 # sitemap-function.php:189
 #: 注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。
-msgid "注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。"
+msgid "Pay your attention：One site one sitemap_baidu.xml."
 msgstr "注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。"
 
 # sitemap-function.php:191
 #: 还没有创建百度Sitemap文件呢
 msgid "Baidu Sitemap File is not Exist, please Write a normal XML file."
 msgstr "还没有创建百度Sitemap文件呢"
+
+# sitemap-function.php:193
+#: 同样在合适的位置加个链接。
+msgid "Also add a link in Homepage or Anywhere you want. "
+msgstr "同样在合适的位置加个链接。"
 
 # sitemap-function.php:388
 #: 关于Baidu-Sitemap：
@@ -236,7 +242,8 @@ msgid "My Other Plugin:"
 msgstr "我的插件列表："
 
 # sitemap-function.php:438
-#: XML 文件正在创建中…… 根据包含的文章数量花费的时间也不同！
+#: XML 文件正在创建中……
+#: 根据包含的文章数量花费的时间也不同！
 msgid "Your sitemap is being refreshed at the moment. Depending on your Post Count this might take some time!"
 msgstr "XML 文件正在创建中…… 根据包含的文章数量花费的时间也不同！"
 
@@ -246,9 +253,9 @@ msgid "Your sitemap will be refreshed in %s seconds!"
 msgstr "在 %s 秒后将会自动更新 Sitemap 文件。"
 
 # sitemap-function.php:444
-#: 没有激活自动生成XML文件,需手动更新。或还没有创建XML文件。
+#: 没有激活自动生成XML文件,需手动更新。
 msgid "Donot activate the Auto build the sitema options, you need build the XML file by yourself."
-msgstr "没有激活自动生成XML文件,需手动更新。或还没有创建XML文件。"
+msgstr "没有激活自动生成XML文件,需手动更新。"
 
 # sitemap-function.php:455
 #: 高级选项
@@ -313,4 +320,54 @@ msgstr "加入文章分类"
 #: 标签，非必需项
 msgid "Add <bbs:boardid> label, not requir"
 msgstr "加入 <bbs:boardid> 标签，非必需项"
+
+# sitemap-function.php:478,480
+#: 文章点击数
+msgid "Post Views"
+msgstr "文章点击数"
+
+# sitemap-function.php:478
+#: 恭喜您，检测到您装了wp-PostViews插件，可以选择添加文章点击数。加入<bbs:hit>标签。非必需项
+msgid "I love wp-PostViews Plugin. You the add a new label <bbs:hit>. Not requir"
+msgstr "恭喜您，检测到您装了wp-PostViews插件，可以选择添加文章点击数。加入<bbs:hit>标签。非必需项"
+
+# sitemap-function.php:480
+#: 此选项不可添加
+msgid "This option can not add."
+msgstr "此选项不可添加"
+
+# sitemap-function.php:480
+#: 对不起，你没有安装或启动wp-PostViews插件。因此没有文章点击量的数据。
+msgid "Sorry, wp-PostViews not start-up. No Post Views."
+msgstr "对不起，你没有安装或启动wp-PostViews插件。因此没有文章点击量的数据。"
+
+# sitemap-function.php:482
+#: 精华文章标准
+msgid "Popular Post"
+msgstr "精华文章标准"
+
+# sitemap-function.php:482
+#: 按分章分类或留言数或点击数
+msgid "Depend on Post Categories or Comments Count or Post Views"
+msgstr "按分章分类或留言数或点击数"
+
+# sitemap-function.php:482
+#: 按留言数，大于
+msgid "Comments Count, More than"
+msgstr "按留言数，大于"
+
+# sitemap-function.php:484,486
+#: 按点击数，大于
+msgid "Post Views, More than"
+msgstr "按点击数，大于"
+
+# sitemap-function.php:486
+#: 您没有安装或启动wp-postviews
+msgid "wp-PostViews not start-up"
+msgstr "您没有安装或启动wp-postviews"
+
+# sitemap-function.php:488
+#: 精华文章，加入标签<bbs:pick>。非必需项
+msgid "Popular Post, Add <bbs:pick> label. Not requir"
+msgstr "精华文章，加入标签<bbs:pick>。非必需项"
 

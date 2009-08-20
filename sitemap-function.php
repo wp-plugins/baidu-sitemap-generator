@@ -3,7 +3,7 @@
 $lc_author = 'zhenglc';
 $lc_authorurl = 'http://www.liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '0.8.1';
+$lc_pluginversion = '0.9';
 $lc_pluginurl = 'http://www.liucheng.name/?p=883';
 
 /**  End **/
@@ -181,16 +181,16 @@ function xml_file_exist() {
 		$filemtime=date("Y-m-d H:i:s",filemtime("$filename")); 
 		//$fileatime=date("Y-m-d H:i:s",fileatime("$filename")); 
 		echo "<p>";
-		_e('当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。','baidu_sitemap');
+		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file，or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
-		echo '<p>'; _e('你可以在首页加个链接（如友情链接/首页底部，或是任何合适的地方），以方便百度蜘蛛访问。','baidu_sitemap'); print '</p>';
-		echo '<p>'; _e('注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
+		echo '<p>'; _e('You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML.','baidu_sitemap'); print '</p>';
+		echo '<p>'; _e('Pay your attention：One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
-		//if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
 	}
+	$sitemap_html = $fileName.'sitemap.html'; if(file_exists($sitemap_html)) { 		echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap.html'.'" target="_blank">'.get_bloginfo('url').'/sitemap.html'.'</a></p>'; echo '<p>'; _e('Also add a link in Homepage or Anywhere you want. ','baidu_sitemap'); print '</p>'; }
 	echo '</div>';
 }
 
@@ -317,7 +317,6 @@ function load_baidu_language() {
 }
 
 
-
 function xml_annotate() {
     global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl, $wp_version;
 	$blogtime = current_time('mysql'); 
@@ -440,18 +439,18 @@ function rebuild_message() {
 						} else {
 							$diffMsg = str_replace("%s",$diff,__('Your sitemap will be refreshed in %s seconds!','baidu_sitemap'));
 						}
-                   
+
 					}else{
 							$diffMsg = __('Donot activate the Auto build the sitema options, you need build the XML file by yourself.','baidu_sitemap');
 					}
 					echo "<strong><p>$diffMsg</p></strong>";	
 				}
 }
-
 function advanced_options() {
-	 global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl;
+	global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat) = explode("|",$get_baidu_sitemap_options); }
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count) = explode("|",$get_baidu_sitemap_options); }
+	$lc_pickcats_array = explode(";",$lc_pickcats);
 	?>
 	<tr><td><label for="advanced_options"><h3><?php _e('Advanced Options','baidu_sitemap');?></h3></label></td></tr>
 		<tr><td><label for="lc_order"><?php _e('Post Order','baidu_sitemap');?></label></td><td>
@@ -475,8 +474,19 @@ function advanced_options() {
 		<tr><td><label for="lc_comments"><?php _e('CommentCount/Date','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_comments" name="lc_comments" value="1" <?php if($lc_comments=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:lastDate> and <bbs:reply> label, not require','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_length"><?php _e('Post strlen(Unit/byte)','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_length" name="lc_post_length" value="1" <?php if($lc_post_length=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:mainLen> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_cat"><?php _e('Post Category','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_cat" name="lc_post_cat" value="1" <?php if($lc_post_cat=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:boardid> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
+		<?php if(function_exists('the_views')){ ?>
+		<tr><td><label for="lc_post_views"><?php _e('Post Views','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_views" name="lc_post_views" value="1" <?php if($lc_post_views=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('I love wp-PostViews Plugin. You the add a new label <bbs:hit>. Not requir','baidu_sitemap');?>">[?]</a><td></tr>
+		<?php } else { ?>
+		<tr><td><label for="lc_post_views"><?php _e('Post Views','baidu_sitemap');?></label></td><td><?php _e('This option can not add.','baidu_sitemap');?></td><td><a title="<?php _e('Sorry, wp-PostViews not start-up. No Post Views.','baidu_sitemap');?>">[?]</a><td></tr>
+		<?php } ?>
+		<tr><td><label for="lc_post_pick"><?php _e('Popular Post','baidu_sitemap');?></label></td><td><cite style="display:block;"><?php _e("Depend on Post Categories or Comments Count or Post Views","baidu_sitemap"); ?></cite><div style="border-color:#CEE1EF; border-style:solid; border-width:2px; height:6em; width:24em; overflow:auto; padding:0.5em 0.5em;"><ul><?php wp_category_checklist(0,0,$lc_pickcats_array,false); ?><li><label for="lc_comments_count"><?php _e('Comments Count, More than','baidu_sitemap');?></label><input type="text" size="20" maxlength="20" name="lc_comments_count"  value="<?php if(empty($lc_comments_count)) { } else { echo $lc_comments_count; }?>" /></li>
+		<?php if(function_exists('the_views')) { ?>
+		<li><label for="lc_views_count"><?php _e('Post Views, More than','baidu_sitemap');?></label><input type="text" size="20" maxlength="20" name="lc_views_count"  value="<?php if(empty($lc_views_count)) { } else { echo $lc_views_count; }?>" /></li>
+		<?php } else { ?>
+		<li><label for="lc_views_count"><?php _e('Post Views, More than','baidu_sitemap');?></label><cite><?php _e('wp-PostViews not start-up','baidu_sitemap');?></cite></li>
+		<?php } ?>
+		</ul></td><td><a title="<?php _e('Popular Post, Add <bbs:pick> label. Not requir','baidu_sitemap');?>">[?]</a><td></tr>
 	<?php
 }
 			
-
 ?>
