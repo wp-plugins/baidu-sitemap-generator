@@ -101,10 +101,9 @@ msgid "There is nothing to do, Please Active the options first."
 msgstr "还没有呢，先激活配置。"
 
 # baidu_sitemap.php:113
-#: 生成百度Sitemap XML
-#: 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
-msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog. And Build a real Static Sitemap-Page for all Search Engine."
-msgstr "生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。"
+#: 生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
+msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine."
+msgstr "生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。"
 
 # baidu_sitemap.php:164
 #: 恭喜, 更新配置成功
@@ -159,7 +158,7 @@ msgstr "还没有创建百度Sitemap文件呢"
 # sitemap-function.php:193
 #: 同样在合适的位置加个链接。
 msgid "Also add a link in Homepage or Anywhere you want. "
-msgstr "同样在合适的位置加个链接。"
+msgstr "同样在合适的位置加个链接。(更加有效，推荐)"
 
 # sitemap-function.php:388
 #: 关于Baidu-Sitemap：
@@ -370,4 +369,49 @@ msgstr "您没有安装或启动wp-postviews"
 #: 精华文章，加入标签<bbs:pick>。非必需项
 msgid "Popular Post, Add <bbs:pick> label. Not requir"
 msgstr "精华文章，加入标签<bbs:pick>。非必需项"
+
+# sitemap-function.php:193
+#: 检查 Html 静态页面：
+msgid "Check SiteMap Html: "
+msgstr "检查 Html 静态页面："
+
+# baidu_sitemap.php:299
+#: 评论 %html_comment%
+msgid "Comments %html_comment%"
+msgstr "评论 %html_comment%"
+
+# baidu_sitemap.php:302
+#: &nbsp;&nbsp;&nbsp;阅读 %html_views%
+msgid "&nbsp;&nbsp;&nbsp;Views %html_views%"
+msgstr "&nbsp;&nbsp;&nbsp;阅读 %html_views%"
+
+# baidu_sitemap.php:330
+#: 站点地图
+msgid "SiteMap"
+msgstr "站点地图"
+
+# baidu_sitemap.php:338
+#: 最新文章
+msgid "RecentPost"
+msgstr "最新文章"
+
+# baidu_sitemap.php:339
+#: 查看博客首页
+msgid "HomePage"
+msgstr "查看博客首页"
+
+# baidu_sitemap.php:
+#: 静态SiteMap页面
+msgid "Static Sitemap-Page"
+msgstr "静态SiteMap页面"
+
+# baidu_sitemap.php:
+#: 同时创建一个静态的 SiteMap 页面。对所有搜索引擎都有利，特别是百度。
+msgid "Also Build a real Static Sitemap-Page for all Search Engine."
+msgstr "同时创建一个静态的 SiteMap 页面。对所有搜索引擎都有利，特别是百度。"
+
+# baidu_sitemap.php:496
+#: 扩展功能
+msgid "Expand Options"
+msgstr "扩展功能"
 

@@ -110,8 +110,8 @@ msgid "There is nothing to do, Please Active the options first."
 msgstr ""
 
 # baidu_sitemap.php:113
-#: 生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。
-msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog. And Build a real Static Sitemap-Page for all Search Engine."
+#: 生成百度Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
+msgid "This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine."
 msgstr ""
 
 # baidu_sitemap.php:164
@@ -372,4 +372,49 @@ msgstr ""
 # sitemap-function.php:488
 #: 精华文章，加入标签<bbs:pick>。非必需项
 msgid "Popular Post, Add <bbs:pick> label. Not requir"
+msgstr ""
+
+# sitemap-function.php:193
+#: 检查 Html 静态页面：
+msgid "Check SiteMap Html: "
+msgstr ""
+
+# baidu_sitemap.php:299
+#: 评论 %html_comment%
+msgid "Comments %html_comment%"
+msgstr ""
+
+# baidu_sitemap.php:302
+#: &nbsp;&nbsp;&nbsp;阅读 %html_views%
+msgid "&nbsp;&nbsp;&nbsp;Views %html_views%"
+msgstr ""
+
+# baidu_sitemap.php:330
+#: 站点地图
+msgid "SiteMap"
+msgstr ""
+
+# baidu_sitemap.php:338
+#: 最新文章
+msgid "RecentPost"
+msgstr ""
+
+# baidu_sitemap.php:339
+#: 查看博客首页
+msgid "HomePage"
+msgstr ""
+
+# baidu_sitemap.php:496
+#: 扩展功能
+msgid "Expand Options"
+msgstr ""
+
+# baidu_sitemap.php:
+#: 静态SiteMap页面
+msgid "Static Sitemap-Page"
+msgstr ""
+
+# baidu_sitemap.php:
+#: 同时创建一个静态的 SiteMap 页面。对所有搜索引擎都有利，特别是百度。
+msgid "Also Build a real Static Sitemap-Page for all Search Engine."
 msgstr ""

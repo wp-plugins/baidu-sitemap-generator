@@ -3,7 +3,7 @@
 $lc_author = 'zhenglc';
 $lc_authorurl = 'http://www.liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '0.9';
+$lc_pluginversion = '1.0';
 $lc_pluginurl = 'http://www.liucheng.name/?p=883';
 
 /**  End **/
@@ -190,7 +190,7 @@ function xml_file_exist() {
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
-	$sitemap_html = $fileName.'sitemap.html'; if(file_exists($sitemap_html)) { 		echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap.html'.'" target="_blank">'.get_bloginfo('url').'/sitemap.html'.'</a></p>'; echo '<p>'; _e('Also add a link in Homepage or Anywhere you want. ','baidu_sitemap'); print '</p>'; }
+	$sitemap_html = GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap.html'.'" target="_blank">'.get_bloginfo('url').'/sitemap.html'.'</a></p>'; echo '<p>'; _e('Also add a link in Homepage or Anywhere you want. ','baidu_sitemap'); print '</p>'; }
 	echo '</div>';
 }
 
@@ -449,7 +449,7 @@ function rebuild_message() {
 function advanced_options() {
 	global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count) = explode("|",$get_baidu_sitemap_options); }
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
 	$lc_pickcats_array = explode(";",$lc_pickcats);
 	?>
 	<tr><td><label for="advanced_options"><h3><?php _e('Advanced Options','baidu_sitemap');?></h3></label></td></tr>
@@ -488,5 +488,15 @@ function advanced_options() {
 		</ul></td><td><a title="<?php _e('Popular Post, Add <bbs:pick> label. Not requir','baidu_sitemap');?>">[?]</a><td></tr>
 	<?php
 }
-			
 ?>
+<?php
+function expand_option() {
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
+	?>
+		<tr><td><label for="expand_options"><h3><?php _e('Expand Options','baidu_sitemap');?></h3></label></td></tr>
+		<tr><td><label for="lc_sitemap_html"><?php _e('Static Sitemap-Page','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_html" name="lc_sitemap_html" value="1" <?php if(empty($get_baidu_sitemap_options) || $lc_sitemap_html=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
+
+	<?php }
+?>
+
+
