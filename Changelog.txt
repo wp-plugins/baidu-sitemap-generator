@@ -1,5 +1,9 @@
 baidu-sitemap开发日志:
 
+V1.01 (2009-08-28)
+
+ *小BUG,与windows live writer冲突问题
+
 V1.0 (2009-08-22)
 
  *生成一个静态的站点地图页面

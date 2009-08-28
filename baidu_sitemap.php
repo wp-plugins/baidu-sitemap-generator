@@ -5,13 +5,13 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://www.liucheng.name/?p=883
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城博客
-Version: 1.0
+Version: 1.10
 Author URI: http://www.liucheng.name/
 
 
 */
 
-ob_start (); 
+//ob_start (); 
 /** define the field name of database **/
 define('BAIDU_SITEMAP_OPTION','baidu_sitemapoption');
 
@@ -63,7 +63,7 @@ function baidu_sitemap_form() {
 				<tr><td><label for="lc_updatePeri"><?php _e('Update Period(hour)','baidu_sitemap');?></label></td><td><input type="text" size="50" maxlength="200" name="lc_updatePeri"  value="<?php echo $lc_updatePeri;?>" /></td><td><a title="<?php _e('Updated in 24 hour is more suitable. Unless you publish a lot of post one day.','baidu_sitemap');?>">[?]</a><td></tr>
 				<tr><td><label for="lc_limits"><?php _e('Post Count','baidu_sitemap');?></label></td><td><input type="text" size="50" maxlength="200" name="lc_limits"  value="<?php echo $lc_limits;?>" /></td><td><a title="<?php _e('XML file just need include the Recent Post and Update Post. Needs much more memory if increase the Post Count.','baidu_sitemap');?>">[?]</a><td></tr>
 				<tr><td><label for="lc_sitemap_auto"><?php _e('Auto build the sitemap','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_auto" name="lc_sitemap_auto" value="1" <?php if(empty($get_baidu_sitemap_options) || $lc_sitemap_auto=='1'){ echo 'checked="checked"'; } ?> /></td></tr>
-				<?php advanced_options(); ?><?php expand_option(); ?>
+				<?php Lc_advanced_options(); ?><?php Lc_expand_option(); ?>
 			</table>
 			<p class="submit"><input type="submit" class="button-primary" value="<?php if(empty($get_baidu_sitemap_options)){_e('Active the options first','baidu_sitemap');}else{_e('Update options','baidu_sitemap');} ?>" /></p>
 			</form>

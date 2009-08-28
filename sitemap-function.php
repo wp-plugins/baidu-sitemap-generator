@@ -3,7 +3,7 @@
 $lc_author = 'zhenglc';
 $lc_authorurl = 'http://www.liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.0';
+$lc_pluginversion = '1.10';
 $lc_pluginurl = 'http://www.liucheng.name/?p=883';
 
 /**  End **/
@@ -181,12 +181,12 @@ function xml_file_exist() {
 		$filemtime=date("Y-m-d H:i:s",filemtime("$filename")); 
 		//$fileatime=date("Y-m-d H:i:s",fileatime("$filename")); 
 		echo "<p>";
-		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file，or setting as 404 page.','baidu_sitemap');
+		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file��or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML.','baidu_sitemap'); print '</p>';
-		echo '<p>'; _e('Pay your attention：One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
+		echo '<p>'; _e('Pay your attention��One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
@@ -249,7 +249,7 @@ function IsFileWritable($filename) {
 
 
 /*
-*去掉字符串中的反斜线字符\
+*
 *Un-quotes quoted string\
 */
 if (!function_exists('stripslashes_deep')) {
@@ -446,7 +446,7 @@ function rebuild_message() {
 					echo "<strong><p>$diffMsg</p></strong>";	
 				}
 }
-function advanced_options() {
+function Lc_advanced_options() {
 	global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
 	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
@@ -488,15 +488,12 @@ function advanced_options() {
 		</ul></td><td><a title="<?php _e('Popular Post, Add <bbs:pick> label. Not requir','baidu_sitemap');?>">[?]</a><td></tr>
 	<?php
 }
-?>
-<?php
-function expand_option() {
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
+
+function Lc_expand_option() {
+	//if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
 	?>
 		<tr><td><label for="expand_options"><h3><?php _e('Expand Options','baidu_sitemap');?></h3></label></td></tr>
 		<tr><td><label for="lc_sitemap_html"><?php _e('Static Sitemap-Page','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_html" name="lc_sitemap_html" value="1" <?php if(empty($get_baidu_sitemap_options) || $lc_sitemap_html=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
 
 	<?php }
 ?>
-
-
