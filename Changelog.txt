@@ -1,5 +1,9 @@
 baidu-sitemap开发日志:
 
+V1.11 (2009-09-14)
+
+ *修复在IE8下乱码的问题
+
 V1.01 (2009-08-28)
 
  *小BUG,与windows live writer冲突问题

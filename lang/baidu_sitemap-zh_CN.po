@@ -147,7 +147,7 @@ msgstr "你可以在首页加个链接（如友情链接/首页底部，或是�
 
 # sitemap-function.php:189
 #: 注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。
-msgid "Pay your attention：One site one sitemap_baidu.xml."
+msgid "Pay your attention: One site one sitemap_baidu.xml."
 msgstr "注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。"
 
 # sitemap-function.php:191

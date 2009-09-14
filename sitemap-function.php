@@ -186,7 +186,7 @@ function xml_file_exist() {
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML.','baidu_sitemap'); print '</p>';
-		echo '<p>'; _e('Pay your attention£ºOne site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
+		echo '<p>'; _e('Pay your attention: One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
@@ -419,6 +419,7 @@ function lc_sidebar() {
 			  <div class="inside">
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://www.liucheng.name/?p=789"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
+						<a class="lc_button lc_pluginHome" href="http://www.liucheng.name/?p=947"><?php _e('Lc.Archivers','baidu_sitemap');?></a>
 				</div>
 			</div>
 

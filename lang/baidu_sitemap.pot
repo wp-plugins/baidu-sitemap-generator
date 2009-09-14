@@ -156,7 +156,7 @@ msgstr ""
 
 # sitemap-function.php:189
 #: 注意：一个站点只能有一个sitemap_baidu.xml文件。否则可能会被识别为作弊。
-msgid "Pay your attention：One site one sitemap_baidu.xml."
+msgid "Pay your attention: One site one sitemap_baidu.xml."
 msgstr ""
 
 # sitemap-function.php:191
