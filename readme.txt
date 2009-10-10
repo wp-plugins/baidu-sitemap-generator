@@ -1,5 +1,5 @@
 ===Baidu Sitemap Generator===
-Contributors: 柳城博客
+Contributors: Lc.
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
 Tested up to: 2.8.4
@@ -14,12 +14,12 @@ This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real 
 
 Related Links:
 
-* <a href="http://www.liucheng.name/?p=883" title="Baidu Sitemap Plugin for WordPress">Plugin Homepage</a>
-* <a href="http://www.liucheng.name/?p=883" title="Changelog of the Baidu Sitemap Plugin for WordPress">Changelog</a>
-* <a href="http://www.liucheng.name/?p=884" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
-* <a href="http://www.liucheng.name/?p=883">Report a BUG</a>
-* <a href="http://www.liucheng.name/?p=883">Suggest a Feature</a>
-* <a href="http://www.liucheng.name/?p=876">诚意邀请您参与测试!(重要)</a>
+* <a href="http://liucheng.name/883/" title="Baidu Sitemap Plugin for WordPress">Plugin Homepage</a>
+* <a href="http://liucheng.name/883/" title="Changelog of the Baidu Sitemap Plugin for WordPress">Changelog</a>
+* <a href="http://liucheng.name/884/" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
+* <a href="http://liucheng.name/883/">Report a BUG</a>
+* <a href="http://liucheng.name/883/">Suggest a Feature</a>
+* <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
 
 
 

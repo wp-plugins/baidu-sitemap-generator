@@ -136,7 +136,7 @@ msgstr ""
 
 # sitemap-function.php:184
 #: 当您需要改变XML文件的路径或名称时(最好不要)，请将原页面做301重定向至新页面，或将原页面置为404。
-msgid "When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file，or setting as 404 page."
+msgid "When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page."
 msgstr ""
 
 # sitemap-function.php:186

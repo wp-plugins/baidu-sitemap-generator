@@ -1,10 +1,10 @@
 <?php
 /** Plugin Author **/
 $lc_author = 'zhenglc';
-$lc_authorurl = 'http://www.liucheng.name/';
+$lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.10';
-$lc_pluginurl = 'http://www.liucheng.name/?p=883';
+$lc_pluginversion = '1.12';
+$lc_pluginurl = 'http://liucheng.name/883/';
 
 /**  End **/
 
@@ -181,12 +181,12 @@ function xml_file_exist() {
 		$filemtime=date("Y-m-d H:i:s",filemtime("$filename")); 
 		//$fileatime=date("Y-m-d H:i:s",fileatime("$filename")); 
 		echo "<p>";
-		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file£¬or setting as 404 page.','baidu_sitemap');
+		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML.','baidu_sitemap'); print '</p>';
-		echo '<p>'; _e('Pay your attention: One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://www.liucheng.name/?p=884" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
+		echo '<p>'; _e('Pay your attention: One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://liucheng.name/884/" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
@@ -389,8 +389,8 @@ function lc_sidebar() {
 			  <div class="inside">
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_authorurl;?>"><?php _e('zhenglc(Author Homepage)','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Plugin Homepage','baidu_sitemap');?></a>
-                        <a class="lc_button lc_resBaidu" href="http://www.liucheng.name/?p=876"><?php _e('Baidu-Sitemap Protocol','baidu_sitemap');?></a>
-						<a class="lc_button lc_resRss" href="http://www.liucheng.name/?p=884"><?php _e('FAQ','baidu_sitemap');?></a>
+                        <a class="lc_button lc_resBaidu" href="http://liucheng.name/876/"><?php _e('Baidu-Sitemap Protocol','baidu_sitemap');?></a>
+						<a class="lc_button lc_resRss" href="http://liucheng.name/884/"><?php _e('FAQ','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginBugs" href="<?php echo $lc_pluginurl;?>"><?php _e('Report a Bug','baidu_sitemap');?></a>
 						<a class="lc_button lc_donateFavorite" href="<?php echo $lc_pluginurl;?>"><?php _e('Suggest a Feature','baidu_sitemap');?></a>
 				</div>
@@ -418,8 +418,8 @@ function lc_sidebar() {
 			<h3 class="hndle"><span ><?php _e('My Other Plugin:','baidu_sitemap');?></span></h3>
 			  <div class="inside">
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
-						<a class="lc_button lc_pluginHome" href="http://www.liucheng.name/?p=789"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
-						<a class="lc_button lc_pluginHome" href="http://www.liucheng.name/?p=947"><?php _e('Lc.Archivers','baidu_sitemap');?></a>
+						<a class="lc_button lc_pluginHome" href="http://liucheng.name/789/"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
+						<a class="lc_button lc_pluginHome" href="http://liucheng.name/947/"><?php _e('Lc.Archivers','baidu_sitemap');?></a>
 				</div>
 			</div>
 
@@ -471,7 +471,7 @@ function Lc_advanced_options() {
 		<option value="post_date" <?php if($lc_order_3=='post_date'){ echo 'selected'; } ?> ><?php _e('Post_Date','baidu_sitemap');?></option>
 		<option value="post_modified" <?php if($lc_order_3=='post_modified'){ echo 'selected'; } ?> ><?php _e('Modified_Date','baidu_sitemap');?></option>
 		<option value="comment_date" <?php if(empty($get_baidu_sitemap_options) || $lc_order_3=='comment_date'){ echo 'selected'; } ?> ><?php _e('Comment_Date','baidu_sitemap');?></option>
-		</select></td><td> <a href="http://www.liucheng.name/?p=884"><?php _e('Learn More','baidu_sitemap');?></a><td></tr>
+		</select></td><td> <a href="http://liucheng.name/884/"><?php _e('Learn More','baidu_sitemap');?></a><td></tr>
 		<tr><td><label for="lc_comments"><?php _e('CommentCount/Date','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_comments" name="lc_comments" value="1" <?php if($lc_comments=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:lastDate> and <bbs:reply> label, not require','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_length"><?php _e('Post strlen(Unit/byte)','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_length" name="lc_post_length" value="1" <?php if($lc_post_length=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:mainLen> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
 		<tr><td><label for="lc_post_cat"><?php _e('Post Category','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_post_cat" name="lc_post_cat" value="1" <?php if($lc_post_cat=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Add <bbs:boardid> label, not requir','baidu_sitemap');?>">[?]</a><td></tr>
