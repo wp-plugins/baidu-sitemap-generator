@@ -3,7 +3,7 @@
 $lc_author = 'zhenglc';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.12';
+$lc_pluginversion = '1.13';
 $lc_pluginurl = 'http://liucheng.name/883/';
 
 /**  End **/
@@ -167,9 +167,9 @@ function GetHomePath() {
 
 function xml_file_exist() {
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	/*if(!empty($get_baidu_sitemap_options)) {
+	if(!empty($get_baidu_sitemap_options)) {
 		list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat) = explode("|",$get_baidu_sitemap_options);
-	}*/
+	}
 	$fileName = GetHomePath();
 	$filename = $fileName.'sitemap_baidu.xml';
 	echo '<div class="tool-box">';
@@ -183,14 +183,14 @@ function xml_file_exist() {
 		echo "<p>";
 		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
-		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap_baidu.xml'.'" target="_blank">'.get_bloginfo('url').'/sitemap_baidu.xml'.'</a></p>';
+		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap_baidu.xml'.'" target="_blank">'.$lc_blog_url.'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '<p>'; _e('You can add a link in Homepage or Anywhere you want. Make sure Robots can visit the XML.','baidu_sitemap'); print '</p>';
 		echo '<p>'; _e('Pay your attention: One site one sitemap_baidu.xml.','baidu_sitemap'); echo '<a href="http://liucheng.name/884/" target="_blank">';_e('Learn More','baidu_sitemap'); echo '</a>'; print '</p>';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
-	$sitemap_html = GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.get_bloginfo('url').'/sitemap.html'.'" target="_blank">'.get_bloginfo('url').'/sitemap.html'.'</a></p>'; echo '<p>'; _e('Also add a link in Homepage or Anywhere you want. ','baidu_sitemap'); print '</p>'; }
+	$sitemap_html = GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.html'.'" target="_blank">'.$lc_blog_url.'/sitemap.html'.'</a></p>'; echo '<p>'; _e('Also add a link in Homepage or Anywhere you want. ','baidu_sitemap'); print '</p>'; }
 	echo '</div>';
 }
 

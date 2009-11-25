@@ -172,7 +172,7 @@ function build_baidu_sitemap() {
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
 	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
 	$lc_pickcats_array = explode(";",$lc_pickcats);
-
+    $blog_home = get_bloginfo('url');
 	/** Get the current time **/
 	$blogtime = current_time('mysql'); 
 	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
@@ -202,7 +202,7 @@ function build_baidu_sitemap() {
 		foreach ($recentposts as $post) {
 		   /** Post URL **/
 		   $permalink = EscapeXML(stripslashes_deep(get_permalink($post->ID)));
-
+           if($lc_blog_url){ $permalink = str_replace("$blog_home", "$lc_blog_url", $permalink); } //2009-11-25
 		   /** Post **/
 			 $my_post = get_post($post->ID, ARRAY_A);
 			 $post_title = EscapeXML(stripslashes_deep($my_post['post_title']));
@@ -366,8 +366,8 @@ function build_baidu_sitemap() {
 	}
 
 
- if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
- baidu_sitemap_is_auto(); 
+if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_this_auto'); }
+   baidu_sitemap_is_auto(); 
 }
 	
 

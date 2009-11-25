@@ -118,7 +118,7 @@ msgstr "恭喜, 生成百度 Sitemap 文件成功"
 # baidu_sitemap.php:313
 #: 文件或目录不可写，请修改目录权限改为777。
 msgid "Directory is not writable. please chmod your directory to 777."
-msgstr "文件或目录不可写，请修改目录权限改为777。"
+msgstr "文件或目录不可写，请修改根目录权限改为777。"
 
 # sitemap-function.php:177
 #: XML 文件状态
