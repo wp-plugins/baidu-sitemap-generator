@@ -1,9 +1,9 @@
 <?php
 /** Plugin Author **/
-$lc_author = 'zhenglc';
+$lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.13';
+$lc_pluginversion = '1.20';
 $lc_pluginurl = 'http://liucheng.name/883/';
 
 /**  End **/
@@ -420,6 +420,8 @@ function lc_sidebar() {
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://liucheng.name/789/"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://liucheng.name/947/"><?php _e('Lc.Archivers','baidu_sitemap');?></a>
+						<a class="lc_button lc_pluginHome" href="http://liucheng.name/1256/"><?php _e('wp-today','baidu_sitemap');?></a>
+						<a class="lc_button lc_pluginHome" href="http://liucheng.name/1166/"><?php _e('wp-christmas','baidu_sitemap');?></a>
 				</div>
 			</div>
 
@@ -450,7 +452,7 @@ function rebuild_message() {
 function Lc_advanced_options() {
 	global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options); }
 	$lc_pickcats_array = explode(";",$lc_pickcats);
 	?>
 	<tr><td><label for="advanced_options"><h3><?php _e('Advanced Options','baidu_sitemap');?></h3></label></td></tr>
@@ -491,10 +493,12 @@ function Lc_advanced_options() {
 }
 
 function Lc_expand_option() {
-	//if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
+	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options); }
 	?>
 		<tr><td><label for="expand_options"><h3><?php _e('Expand Options','baidu_sitemap');?></h3></label></td></tr>
-		<tr><td><label for="lc_sitemap_html"><?php _e('Static Sitemap-Page','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_html" name="lc_sitemap_html" value="1" <?php if(empty($get_baidu_sitemap_options) || $lc_sitemap_html=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
+		<tr><td><label for="lc_sitemap_html"><?php _e('Static Sitemap-Page','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_html" name="lc_sitemap_html" value="1" <?php if($lc_sitemap_html=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
+		<!--<tr><td><label for="lc_sitemap_publish_post"><?php _e('publish post','baidu_sitemap');?></label></td><td><input type="checkbox" id="lc_sitemap_publish_post" name="lc_sitemap_publish_post" value="1" <?php if($lc_sitemap_publish_post=='1'){ echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Update sitemap xml & html when publish a post.','baidu_sitemap');?>">[?]</a><td></tr>-->
 
 	<?php }
 ?>

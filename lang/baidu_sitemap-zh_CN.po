@@ -415,3 +415,11 @@ msgstr "同时创建一个静态的 SiteMap 页面。对所有搜索引擎都有
 msgid "Expand Options"
 msgstr "扩展功能"
 
+# baidu_sitemap.php:
+msgid "publish post"
+msgstr "文章发布"
+
+# baidu_sitemap.php:
+msgid "Update sitemap xml & html when publish a post."
+msgstr "当发布文章时更新sitemap xml 及 html"
+

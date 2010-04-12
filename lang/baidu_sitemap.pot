@@ -418,3 +418,11 @@ msgstr ""
 #: 同时创建一个静态的 SiteMap 页面。对所有搜索引擎都有利，特别是百度。
 msgid "Also Build a real Static Sitemap-Page for all Search Engine."
 msgstr ""
+
+# baidu_sitemap.php:
+msgid "publish post"
+msgstr ""
+
+# baidu_sitemap.php:
+msgid "Update sitemap xml & html when publish a post."
+msgstr ""

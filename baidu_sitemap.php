@@ -4,8 +4,8 @@
 Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/883/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
-Author: Lc.
-Version: 1.13
+Author: 柳城
+Version: 1.20
 Author URI: http://liucheng.name/
 
 
@@ -43,7 +43,7 @@ function baidu_sitemap_form() {
 		$lc_updatePeri = "24";
 		$lc_limits = "50";
 	}else{
-		list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat) = explode("|",$get_baidu_sitemap_options);
+		list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options);
 	}
 
 	?>
@@ -158,8 +158,9 @@ function update_baidu_sitemap() {
 		if(empty($_POST['lc_views_count'])  && !is_numeric($_POST['lc_views_count'])) { $lc_views_count ='0'; } else { $lc_views_count = $_POST['lc_views_count']; }
 		//echo $lc_views_count;
 	} else { $lc_views_count ='0'; }
-    if(isset($_POST['lc_sitemap_html'])) { if(empty($_POST['lc_sitemap_html'])) { $lc_sitemap_html = '0'; } else { $lc_sitemap_html = $_POST['lc_sitemap_html']; } } else { $lc_sitemap_html = '1'; }
-		$baidu_sitemap_options = implode('|',array($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html));
+    if(isset($_POST['lc_sitemap_html'])) { if(empty($_POST['lc_sitemap_html'])) { $lc_sitemap_html = '0'; } else { $lc_sitemap_html = $_POST['lc_sitemap_html']; } }
+	if(isset($_POST['lc_sitemap_publish_post'])) { if(!($_POST['lc_sitemap_publish_post'])) { $lc_sitemap_publish_post = '0'; } else { $lc_sitemap_publish_post = $_POST['lc_sitemap_publish_post']; } }
+		$baidu_sitemap_options = implode('|',array($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post));
 		update_option(BAIDU_SITEMAP_OPTION,$baidu_sitemap_options); 
         baidu_sitemap_topbarmessage(__('Congratulate, Update options success','baidu_sitemap'));
 	}
@@ -170,7 +171,7 @@ function update_baidu_sitemap() {
 function build_baidu_sitemap() {
     global $wpdb, $posts, $wp_version;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html) = explode("|",$get_baidu_sitemap_options); }
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options); }
 	$lc_pickcats_array = explode(";",$lc_pickcats);
     $blog_home = get_bloginfo('url');
 	/** Get the current time **/
@@ -195,7 +196,7 @@ function build_baidu_sitemap() {
 		WHERE post_password = ''
 		AND post_type = 'post'
 		AND post_status = 'publish'
-		ORDER BY concat($lc_order_1,'-',$lc_order_2,'-',$lc_order_3) DESC 
+		ORDER BY $lc_order_1 DESC 
 		LIMIT 0,$lc_limits";
     $recentposts = $wpdb->get_results($sql);
     if($recentposts){
@@ -295,7 +296,7 @@ function build_baidu_sitemap() {
 
 			/** html_contents **/
 			$comment_count = $my_post['comment_count'];
-			if($comment_count) {
+			if($comment_count || $comment_count == 0) {
 				$html_comment = str_replace("%html_comment%",$comment_count,__('Comments %html_comment%','baidu_sitemap'));
 			}
 			if($post_views) {
@@ -314,9 +315,9 @@ function build_baidu_sitemap() {
     $baidu_xml = $xml_begin.$xml_middle_done.$xml_end;
 
 	/** save XML file as sitemap_baidu.xml **/
-	$fileName = GetHomePath();
-	$filename = $fileName.'sitemap_baidu.xml';
-	if(IsFileWritable($filename)){ 
+	$GetHomePath = GetHomePath();
+	$filename = $GetHomePath.'sitemap_baidu.xml';
+	if( IsFileWritable($GetHomePath) || IsFileWritable($filename) ){ 
 		file_put_contents("$filename","$baidu_xml"); 		
 		/** Messages  **/
 		baidu_sitemap_topbarmessage(__('Congratulate, Build the XML file success','baidu_sitemap'));
@@ -355,8 +356,8 @@ function build_baidu_sitemap() {
 			$html = str_replace("%RecentPost%",$recentpost,$html);
 			$html = str_replace("%updated_time%",$updated_time,$html);
 			$html = str_replace("%contents%",$html_contents,$html);
-			$filename_html = GetHomePath().'sitemap.html';
-			if(IsFileWritable($filename_html)){ 
+			$filename_html = $GetHomePath.'sitemap.html';
+			if( IsFileWritable($GetHomePath) || IsFileWritable($filename_html) ){ 
 				file_put_contents("$filename_html","$html"); 		
 				/** Messages  **/
 				//baidu_sitemap_topbarmessage(__('Congratulate, Build the XML file success','baidu_sitemap'));
@@ -376,5 +377,4 @@ add_action('admin_menu','baidu_sitemap_menu');
 add_action('init','baidu_sitemap_is_auto',1001,0);
 /** load the language file **/
 add_filter('init','load_baidu_language');
-
 ?>

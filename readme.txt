@@ -1,5 +1,5 @@
 ===Baidu Sitemap Generator===
-Contributors: Lc.
+Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
 Tested up to: 2.8.6
@@ -20,6 +20,12 @@ Related Links:
 * <a href="http://liucheng.name/883/">Report a BUG</a>
 * <a href="http://liucheng.name/883/">Suggest a Feature</a>
 * <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
+
+V 1.20
+
+1，解决更新时没有生成最新文章的BUG
+2，解决win下"权限问题"的错误提示（有待测试）
+3，解决没有评论不显示的问题
 
 
 
