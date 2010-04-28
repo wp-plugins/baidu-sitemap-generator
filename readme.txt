@@ -2,7 +2,7 @@
 Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
-Tested up to: 2.8.6
+Tested up to: 2.9.2
 Stable tag: trunk
 
 Baidu Sitemap Generator
@@ -20,6 +20,7 @@ Related Links:
 * <a href="http://liucheng.name/883/">Report a BUG</a>
 * <a href="http://liucheng.name/883/">Suggest a Feature</a>
 * <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
+* 参加了<a href="http://liucheng.name" title="博百优">博百优</a>
 
 V 1.20
 
