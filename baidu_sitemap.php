@@ -5,7 +5,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/883/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.22
+Version: 1.30
 Author URI: http://liucheng.name/
 
 
@@ -43,7 +43,7 @@ function baidu_sitemap_form() {
 		$lc_updatePeri = "24";
 		$lc_limits = "50";
 	}else{
-		list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options);
+		list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post,$lc_support) = explode("|",$get_baidu_sitemap_options);
 	}
 
 	?>
@@ -86,8 +86,8 @@ function baidu_sitemap_form() {
 			/** show the XML file if exist **/ 
 			xml_file_exist();
 
-			/** Show help information **/
-			//baidu_sitemap_help(); 	
+			/** Show others information **/
+			lc_text();
 			?>
 		</div>
 		</div>
@@ -160,7 +160,10 @@ function update_baidu_sitemap() {
 	} else { $lc_views_count ='0'; }
     if(isset($_POST['lc_sitemap_html'])) { if(empty($_POST['lc_sitemap_html'])) { $lc_sitemap_html = '0'; } else { $lc_sitemap_html = $_POST['lc_sitemap_html']; } }
 	if(isset($_POST['lc_sitemap_publish_post'])) { if(!($_POST['lc_sitemap_publish_post'])) { $lc_sitemap_publish_post = '0'; } else { $lc_sitemap_publish_post = $_POST['lc_sitemap_publish_post']; } }
-		$baidu_sitemap_options = implode('|',array($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post));
+	$lc_support = $_POST['lc_support'];
+	if(!$lc_support){ $lc_support = 'no'; }
+
+		$baidu_sitemap_options = implode('|',array($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post,$lc_support));
 		update_option(BAIDU_SITEMAP_OPTION,$baidu_sitemap_options); 
         baidu_sitemap_topbarmessage(__('Congratulate, Update options success','baidu_sitemap'));
 	}
@@ -171,7 +174,7 @@ function update_baidu_sitemap() {
 function build_baidu_sitemap() {
     global $wpdb, $posts, $wp_version;
 	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
-	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post) = explode("|",$get_baidu_sitemap_options); }
+	if(!empty($get_baidu_sitemap_options)){ list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post,$lc_support) = explode("|",$get_baidu_sitemap_options); }
 	$lc_pickcats_array = explode(";",$lc_pickcats);
     $blog_home = get_bloginfo('url');
 	/** Get the current time **/
@@ -372,9 +375,29 @@ if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_thi
 }
 	
 
+function lc_text(){
+	?>
+	<h3>PS:</h3>
+	<p>提醒：百度的ping服务地址早就有了。可以把它加入ping服务列表，加快百度的收录速度。百度的ping服务地址：http://ping.baidu.com/ping/RPC2</p>
+	<p>提醒：百度的站长平台也快有了（http://sitemap.baidu.com/），目前是在<b>封闭测试期间，将不对外开放</b>。也就是说，等这个开放后，百度将支持通用的sitemap了。 也就是说， 这个插件的使命就要告一段落了，或是结束更新，或是继续根据百度站长平台的要求继续开发插件。请大家提些建议~（建议：http://liucheng.name/883/）</p>
+	<h3>PPS:</h3>
+	<p>本人正在参加 博百优大赛。需要大家的支持。请加上liucheng.name的链接（锚文本用 博百优）。或在上面勾上suppot author的选项。谢谢支持。</p>
+	<?php
+}
+
+function the_lc_support(){
+	$get_baidu_sitemap_options = get_option(BAIDU_SITEMAP_OPTION);
+    list($lc_blog_url,$lc_admin_email,$lc_updatePeri,$lc_limits,$lc_sitemap_auto,$lc_order_1,$lc_order_2,$lc_order_3,$lc_comments,$lc_post_length,$lc_post_cat,$lc_post_views,$lc_pickcats,$lc_comments_count,$lc_views_count,$lc_sitemap_html,$lc_sitemap_publish_post,$lc_support) = explode("|",$get_baidu_sitemap_options);
+	if($lc_support == 'yes'){
+		print "<div style='display:none;'><strong><a href='http://liucheng.name'>博百优</a></strong></div>";
+	}
+}
+
 /** Tie the module into Wordpress **/
 add_action('admin_menu','baidu_sitemap_menu');
 add_action('init','baidu_sitemap_is_auto',1001,0);
 /** load the language file **/
 add_filter('init','load_baidu_language');
+
+add_action('wp_footer','the_lc_support');
 ?>

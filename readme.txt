@@ -22,6 +22,14 @@ Related Links:
 * <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
 * 参加了<a href="http://liucheng.name" title="博百优">博百优</a>
 
+
+V 1.30
+
+1，提醒百度ping服务的地址
+2，提醒百度站长平台
+3，欢迎大家的意见
+
+
 V 1.20
 
 1，解决更新时没有生成最新文章的BUG
