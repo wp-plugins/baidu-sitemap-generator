@@ -423,3 +423,7 @@ msgstr "文章发布"
 msgid "Update sitemap xml & html when publish a post."
 msgstr "当发布文章时更新sitemap xml 及 html"
 
+# baidu_sitemap.php:
+msgid "Auto when publish post"
+msgstr "当发布文章后自动生成"
+

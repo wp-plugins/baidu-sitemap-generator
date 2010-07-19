@@ -426,3 +426,7 @@ msgstr ""
 # baidu_sitemap.php:
 msgid "Update sitemap xml & html when publish a post."
 msgstr ""
+
+# baidu_sitemap.php:
+msgid "Auto when publish post"
+msgstr ""
