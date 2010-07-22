@@ -21,6 +21,8 @@ Related Links:
 * <a href="http://liucheng.name/883/">Suggest a Feature</a>
 * <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
 
+* QQAS.Info »  <a href="http://qqas.info/" title="买车、购车、养车资讯与问答">QQAS</a>
+
 
 V 1.30
 
