@@ -10,6 +10,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#
+msgid "Baidu Zhanzhang"
+msgstr "百度站长平台"
+
+#
+msgid "add a link in Homepage or Anywhere you want."
+msgstr "在首页添加此html的链接，方便搜索引擎抓取。"
+
+#
+msgid "Add to robots.txt:"
+msgstr "添加到robots.txt："
+
+#
+msgid "Post Limit 1000"
+msgstr "只包括最近的文章(1000以内)"
+
+#
+msgid "Update Sitemap when Publish Post"
+msgstr "当发布文章时更新Sitemap"
+
+#
+msgid "Enabled Html Sitemap"
+msgstr "生成Html地图"
+
+#
+msgid "Enabled XML Sitemap"
+msgstr "生成XML地图"
+
 # baidu_sitemap.php:55
 #: 参数配置
 msgid "Preferences"

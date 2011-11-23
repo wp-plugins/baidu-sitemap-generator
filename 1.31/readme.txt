@@ -2,7 +2,7 @@
 Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
-Tested up to: 3.2
+Tested up to: 3.0
 Stable tag: trunk
 
 Baidu Sitemap Generator
@@ -19,15 +19,12 @@ Related Links:
 * <a href="http://liucheng.name/884/" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
 * <a href="http://liucheng.name/883/">Report a BUG</a>
 * <a href="http://liucheng.name/883/">Suggest a Feature</a>
-* <a href="http://zhanzhang.baidu.com/">百度站长平台</a>
+* <a href="http://liucheng.name/876/">诚意邀请您参与测试!(重要)</a>
 
 »  <a href="http://yunphotos.com/" title="摄影-用光的艺术">云摄影</a>
 
 
-V1.40
-1，支持百度站长平台Sitemap
-
-V 1.31
+V 1.30
 
 1，提醒百度ping服务的地址
 2，提醒百度站长平台

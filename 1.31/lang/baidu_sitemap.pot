@@ -19,37 +19,6 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#
-msgid "Baidu Zhanzhang"
-msgstr ""
-
-#
-msgid "add a link in Homepage or Anywhere you want."
-msgstr ""
-
-#
-msgid "Add to robots.txt:"
-msgstr ""
-
-
-#
-msgid "Post Limit 1000"
-msgstr ""
-
-
-#
-msgid "Update Sitemap when Publish Post"
-msgstr ""
-
-#
-msgid "Enabled Html Sitemap"
-msgstr ""
-
-#
-msgid "Enabled XML Sitemap"
-msgstr ""
-
-
 # baidu_sitemap.php:55
 #: 参数配置
 msgid "Preferences"
