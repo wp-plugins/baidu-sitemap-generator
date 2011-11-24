@@ -3,7 +3,7 @@
 $lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.40';
+$lc_pluginversion = '1.42';
 $lc_pluginurl = 'http://liucheng.name/883/';
 
 /**  End **/
@@ -438,5 +438,12 @@ function xml_annotate() {
 	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
 	$xml_author_annotate = '<!-- baidu-sitemap-generator-url="'.$lc_authorurl.'" baidu-sitemap-generator-version="'.$lc_pluginversion.'" --><!-- generated-on="'."$today_year-$today_month-$today_day $hour:$minute:$second".'" -->';
     return $xml_author_annotate;
+}
+
+function LCZ_GetTimestampFromMySql($mysqlDateTime) {
+	list($date, $hours) = explode(' ', $mysqlDateTime);
+	list($year,$month,$day) = explode('-',$date);
+	list($hour,$min,$sec) = explode(':',$hours);
+	return mktime(intval($hour), intval($min), intval($sec), intval($month), intval($day), intval($year));
 }
 ?>

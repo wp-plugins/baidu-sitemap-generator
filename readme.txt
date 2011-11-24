@@ -24,10 +24,14 @@ Related Links:
 »  <a href="http://yunphotos.com/" title="摄影-用光的艺术">云摄影</a>
 
 
+V1.42
+
+1，修复几个小BUG
+
 V1.40
 
 1，支持百度站长平台Sitemap
-2, 增加目录及Page页面加入sitemap
+2, 增加目录及Page页面
 
 V 1.31
 

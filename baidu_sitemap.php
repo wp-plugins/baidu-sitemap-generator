@@ -5,7 +5,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/883/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.41
+Version: 1.42
 Author URI: http://liucheng.name/
 */
 
@@ -142,7 +142,7 @@ function build_baidu_sitemap() {
 	if($array_baidu_sitemap_options['lc_post_limit1000']){ $lc_limit = '1000'; } else { $lc_limit = '10000'; }
 
     ## $lc_contents , $lc_limit = '1000'
-	$sql_mini = "select ID,post_modified_gmt,post_type FROM $wpdb->posts
+	$sql_mini = "select ID,post_modified_gmt,post_date_gmt,post_type FROM $wpdb->posts
 	        WHERE post_password = ''
 			AND (post_type != 'revision' AND post_type != 'attachment')
 			AND post_status = 'publish'
@@ -154,7 +154,8 @@ function build_baidu_sitemap() {
 		foreach ($recentposts_mini as $post){
 			if( $post->post_type == 'page' ){
 				$loc = get_page_link($post->ID);
-				$lastmod = date("Y-m-d\TH:i:s+00:00",$post->post_modified_gmt);
+				if($post->post_modified_gmt == '0000-00-00 00:00:00'){ $post_date_gmt = $post->post_date_gmt; } else { $post_date_gmt = $post->post_modified_gmt; } 
+				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date_gmt));
 				$changefreq = 'weekly';
 				$priority = '0.3';
 				$xml_contents_page .= "<url>";
@@ -165,7 +166,8 @@ function build_baidu_sitemap() {
 				$xml_contents_page .= "</url>";
 			}else{
 				$loc = get_permalink($post->ID);
-				$lastmod = date("Y-m-d\TH:i:s+00:00",$post->post_modified_gmt);
+				if($post->post_modified_gmt == '0000-00-00 00:00:00'){ $post_date_gmt = $post->post_date_gmt; } else { $post_date_gmt = $post->post_modified_gmt; } 
+				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date_gmt));
 				$changefreq = 'monthly';
 				$priority = '0.6';
 				$xml_contents_post .= "<url>";
