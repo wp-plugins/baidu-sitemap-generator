@@ -24,7 +24,7 @@ Related Links:
 »  <a href="http://yunphotos.com/" title="摄影-用光的艺术">云摄影</a>
 
 
-V1.42
+V1.43
 
 1，修复几个小BUG
 
