@@ -25,7 +25,9 @@ Related Links:
 
 
 V1.40
+
 1，支持百度站长平台Sitemap
+2, 增加目录及Page页面加入sitemap
 
 V 1.31
 
