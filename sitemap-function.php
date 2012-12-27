@@ -3,8 +3,8 @@
 $lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.43';
-$lc_pluginurl = 'http://liucheng.name/883/';
+$lc_pluginversion = '1.44';
+$lc_pluginurl = 'http://liucheng.name/2113/';
 
 /**  End **/
 
@@ -139,9 +139,10 @@ if(!function_exists('file_put_contents')) {
 *@author arnee
 *google-sitemap-generator
 */
-if (!function_exists('GetHomePath')) {
-function GetHomePath() {
+if (!function_exists('lc_GetHomePath')) {
+function lc_GetHomePath() {
 	
+	if(lc_IS_SAE()){ return "saestor://wordpress/"; } ## SAE环境
 	$res="";
 	//Check if we are in the admin area -> get_home_path() is avaiable
 	if(function_exists("get_home_path")) {
@@ -173,7 +174,7 @@ function GetHomePath() {
 *@author arnee
 *google-sitemap-generator
 */
-function EscapeXML($string) {
+function lc_EscapeXML($string) {
 	return str_replace ( array ( '&', '"', "'", '<', '>'), array ( '&amp;' , '&quot;', '&apos;' , '&lt;' , '&gt;'), $string);
 }
 
@@ -186,8 +187,9 @@ function EscapeXML($string) {
  * @author  VJTD3 <http://www.VJTD3.com>
  * @return bool true if writable
  */
-if (!function_exists('IsFileWritable')) {
-function IsFileWritable($filename) {
+if (!function_exists('lc_IsFileWritable')) {
+function lc_IsFileWritable($filename) {
+	if(lc_IS_SAE()){ return true; } ## SAE环境
 	clearstatcache();
 	//can we write?
 	if(!is_writable($filename)) {
@@ -210,16 +212,15 @@ function IsFileWritable($filename) {
 }
 }
 
-
 /*
 *
 *Un-quotes quoted string\
 */
-if (!function_exists('stripslashes_deep')) {
-	function stripslashes_deep($value)
+if (!function_exists('lc_stripslashes_deep')) {
+	function lc_stripslashes_deep($value)
 	{
 		$value = is_array($value) ?
-					array_map('stripslashes_deep', $value) :
+					array_map('lc_stripslashes_deep', $value) :
 					stripslashes($value);
 
 		return $value;
@@ -234,8 +235,8 @@ if (!function_exists('stripslashes_deep')) {
  * @author Arne Brachhold
  * @return string The path to the plugin directory
  */
-if (!function_exists('GetPluginPath')) {
-function GetPluginPath() {
+if (!function_exists('lc_GetPluginPath')) {
+function lc_GetPluginPath() {
 	$path = dirname(__FILE__);
 	return trailingslashit(str_replace("\\","/",$path));
 }
@@ -249,8 +250,8 @@ function GetPluginPath() {
  * @author Arne Brachhold
  * @return string The URL to the plugin directory
  */
-if (!function_exists('GetPluginUrl')) {
-function GetPluginUrl() {
+if (!function_exists('lc_GetPluginUrl')) {
+function lc_GetPluginUrl() {
 	
 	//Try to use WP API if possible, introduced in WP 2.6
 	if (function_exists('plugins_url')) return trailingslashit(plugins_url(basename(dirname(__FILE__))));
@@ -303,35 +304,35 @@ function lc_sidebar() {
 		}
 
 		a.lc_donatePayPal {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/icon-paypal.gif);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/icon-paypal.gif);
 		}
 		
 		a.lc_donateFavorite {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/favorite_icon.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/favorite_icon.png);
 		}
 		
 		a.lc_pluginHome {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/liucheng_name16.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/liucheng_name16.png);
 		}
 		
 		a.lc_pluginList {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/icon-email.gif);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/icon-email.gif);
 		}
 		
 		a.lc_pluginBugs {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/rss_icon.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/rss_icon.png);
 		}
 		
 		a.lc_resBaidu {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/baidu.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/baidu.png);
 		}
 		
 		a.lc_resRss {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/rss_icon.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/rss_icon.png);
 		}
 		
 		a.lc_resWordpress {
-			background-image:url(<?php echo GetPluginUrl(); ?>img/wordpress_icon2.png);
+			background-image:url(<?php echo lc_GetPluginUrl(); ?>img/wordpress_icon2.png);
 		}
 		
 		</style>
@@ -348,7 +349,7 @@ function lc_sidebar() {
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_authorurl;?>" target="_blank"><?php _e('zhenglc(Author Homepage)','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>" target="_blank"><?php _e('Plugin Homepage','baidu_sitemap');?></a>
                         <a class="lc_button lc_resBaidu" href="http://zhanzhang.baidu.com/" target="_blank"><?php _e('Baidu Zhanzhang','baidu_sitemap');?></a>
-						<a class="lc_button lc_resRss" href="http://liucheng.name/884/" target="_blank"><?php _e('FAQ','baidu_sitemap');?></a>
+						<a class="lc_button lc_resRss" href="http://liucheng.name/2113/" target="_blank"><?php _e('FAQ','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginBugs" href="<?php echo $lc_pluginurl;?>" target="_blank"><?php _e('Report a Bug','baidu_sitemap');?></a>
 						<a class="lc_button lc_donateFavorite" href="<?php echo $lc_pluginurl;?>" target="_blank"><?php _e('Suggest a Feature','baidu_sitemap');?></a>
 				</div>
@@ -377,7 +378,6 @@ function lc_sidebar() {
 			  <div class="inside">
 			            <a class="lc_button lc_pluginHome" href="<?php echo $lc_pluginurl;?>" target="_blank"><?php _e('Baidu-Sitemap','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://liucheng.name/789/" target="_blank"><?php _e('WP KeywordLink','baidu_sitemap');?></a>
-						<a class="lc_button lc_pluginHome" href="http://liucheng.name/947/" target="_blank"><?php _e('Lc.Archivers','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://liucheng.name/1256/" target="_blank"><?php _e('wp-today','baidu_sitemap');?></a>
 						<a class="lc_button lc_pluginHome" href="http://liucheng.name/1166/" target="_blank"><?php _e('wp-christmas','baidu_sitemap');?></a>
 				</div>
@@ -390,7 +390,7 @@ function lc_sidebar() {
 }
 
 
-function rebuild_message() {
+function lc_rebuild_message() {
 				if(function_exists("wp_next_scheduled")) {
 					$next = wp_next_scheduled('do_this_auto');
 					if($next) {
@@ -409,7 +409,7 @@ function rebuild_message() {
 }
 function xml_file_exist() {
 	$lc_blog_url = home_url();
-	$fileName = GetHomePath();
+	$fileName = lc_GetHomePath();
 	$filename = $fileName.'sitemap_baidu.xml';
 	echo '<div class="tool-box">';
 	echo '<h3 class="title">';
@@ -424,19 +424,19 @@ function xml_file_exist() {
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap_baidu.xml'.'" target="_blank">'.$lc_blog_url.'/sitemap_baidu.xml'.'</a></p>';
 		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
-		echo '<p>'; _e('Add to robots.txt:','baidu_sitemap'); print '</p>';
-		echo '<pre><b>Sitemap: '.$lc_blog_url.'/sitemap_baidu.xml</b></pre>';
+		echo '<p>'; _e('Add to robots.txt:','baidu_sitemap'); print '<b>Sitemap: '.$lc_blog_url.'/sitemap_baidu.xml</b></p>';
+		echo '';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
-	$sitemap_html = GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.html'.'" target="_blank">'.$lc_blog_url.'/sitemap.html'.'</a></p>'; echo '<p>'; _e('add a link in Homepage or Anywhere you want.','baidu_sitemap'); print '</p>'; }
+	$sitemap_html = lc_GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.html'.'" target="_blank">'.$lc_blog_url.'/sitemap.html'.'</a></p>'; echo '<p>'; _e('add a link in Homepage or Anywhere you want.','baidu_sitemap'); print '</p>'; }
 	echo '</div>';
 }
 function xml_annotate() {
 	global $lc_author, $lc_authorurl, $lc_plugin, $lc_pluginversion, $lc_pluginurl, $wp_version;
 	$blogtime = current_time('mysql'); 
 	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
-	$xml_author_annotate = '<!-- baidu-sitemap-generator-url="'.$lc_authorurl.'" baidu-sitemap-generator-version="'.$lc_pluginversion.'" --><!-- generated-on="'."$today_year-$today_month-$today_day $hour:$minute:$second".'" -->';
+	$xml_author_annotate = '<!-- baidu-sitemap-generator-version="'.$lc_pluginversion.'" --><!-- generated-on="'."$today_year-$today_month-$today_day $hour:$minute:$second".'" -->';
     return $xml_author_annotate;
 }
 
@@ -445,5 +445,15 @@ function LCZ_GetTimestampFromMySql($mysqlDateTime) {
 	list($year,$month,$day) = explode('-',$date);
 	list($hour,$min,$sec) = explode(':',$hours);
 	return mktime(intval($hour), intval($min), intval($sec), intval($month), intval($day), intval($year));
+}
+
+function lc_IS_SAE(){
+	//[sae]判断是否运行在SAE上。
+	$lc_IS_SAE = SAE_MYSQL_DB;
+	if($lc_IS_SAE && $lc_IS_SAE!='SAE_MYSQL_DB'){
+		return true;
+	}else{
+		return false;
+	}
 }
 ?>

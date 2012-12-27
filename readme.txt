@@ -1,8 +1,8 @@
-﻿===Baidu Sitemap Generator===
+===Baidu Sitemap Generator===
 Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
-Tested up to: 3.2
+Tested up to: 3.5
 Stable tag: trunk
 
 Baidu Sitemap Generator
@@ -14,14 +14,19 @@ This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real 
 
 Related Links:
 
-* <a href="http://liucheng.name/883/" title="Baidu Sitemap Plugin for WordPress">Plugin Homepage</a>
-* <a href="http://liucheng.name/883/" title="Changelog of the Baidu Sitemap Plugin for WordPress">Changelog</a>
-* <a href="http://liucheng.name/884/" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
-* <a href="http://liucheng.name/883/">Report a BUG</a>
-* <a href="http://liucheng.name/883/">Suggest a Feature</a>
+* <a href="http://liucheng.name/2113/" title="Baidu Sitemap Plugin for WordPress">Plugin Homepage</a>
+* <a href="http://liucheng.name/2113/" title="Baidu Sitemap FAQ">Plugin and Baidu-Sitemap FAQ</a>
+* <a href="http://liucheng.name/2113/">Report a BUG</a>
+* <a href="http://liucheng.name/2113/">Suggest a Feature</a>
 * <a href="http://zhanzhang.baidu.com/">百度站长平台</a>
 
-»  <a href="http://yunphotos.com/" title="摄影-用光的艺术">云摄影</a>
+
+
+V1.44
+
+1，修复频繁更新的BUG
+2, 支持SAE环境
+3，修复与其它插件有冲突的BUG
 
 
 V1.43
@@ -51,7 +56,6 @@ V 1.20
 == Screenshots ==
 
 1. Baidu Sitemap admin panel
-2. Baidu Sitemap XML File
 
 
 == Installation ==
