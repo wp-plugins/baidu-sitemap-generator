@@ -5,7 +5,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/883/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.44
+Version: 1.45
 Author URI: http://liucheng.name/
 */
 
@@ -80,8 +80,8 @@ function baidu_sitemap_form() {
 			xml_file_exist();
 
 			/** Show others information **/
-			lc_text();
-			lc_for_SAE();
+			LCZ_text();
+			LCZ_for_SAE();
 			?>
 		</div>
 		</div>
@@ -100,7 +100,7 @@ function baidu_sitemap_optionpage()
 		}
 		
 		/** Definition **/
-      echo '<div class="wrap"><div style="background: url('.lc_GetPluginUrl().'img/liucheng_name32.png) no-repeat;" class="icon32"><br /></div>';
+      echo '<div class="wrap"><div style="background: url('.LCZ_GetPluginUrl().'img/liucheng_name32.png) no-repeat;" class="icon32"><br /></div>';
 		echo '<h2>Baidu Sitemap Generator</h2>';
 
 		/** Introduction **/ 
@@ -112,7 +112,7 @@ function baidu_sitemap_optionpage()
 		//test_form();
 
 		/** Show the plugins Author **/
-		lc_sidebar();
+		LCZ_sidebar();
 	
         
 		//echo '</div>';
@@ -223,9 +223,9 @@ function build_baidu_sitemap_xml($xml_contents){
 		$baidu_xml = $xml_begin.$xml_home.$xml_contents.$xml_end;
 
 		/** save XML file as sitemap_baidu.xml **/
-		$lc_GetHomePath = lc_GetHomePath();
-		$filename = $lc_GetHomePath.'sitemap_baidu.xml';
-		if( lc_IsFileWritable($lc_GetHomePath) || lc_IsFileWritable($filename) ){ 
+		$LCZ_GetHomePath = LCZ_GetHomePath();
+		$filename = $LCZ_GetHomePath.'sitemap_baidu.xml';
+		if( LCZ_IsFileWritable($LCZ_GetHomePath) || LCZ_IsFileWritable($filename) ){ 
 			file_put_contents("$filename","$baidu_xml"); 
 			@chmod($filename, 0777);
 			/** Messages  **/
@@ -281,7 +281,7 @@ function build_baidu_sitemap_html(){
 	$updated_time = "$today_year-$today_month-$today_day $hour:$minute:$second";
 
 	if($html_contents) { 
-		$path_html  = lc_GetPluginPath().'sitemap.html';
+		$path_html  = LCZ_GetPluginPath().'sitemap.html';
 		$html = file_get_contents("$path_html");
 		
 		$html = str_replace("%blog_title%",$blog_title,$html);
@@ -298,9 +298,9 @@ function build_baidu_sitemap_html(){
 		$html = str_replace("%contents%",$html_contents,$html);
 		$html = str_replace("%Lc_category_contents%",$html_category_contents,$html);
 		$html = str_replace("%Lc_page_contents%",$html_page_contents,$html);
-		$lc_GetHomePath = lc_GetHomePath();
-		$filename_html = $lc_GetHomePath.'sitemap.html';
-		if( lc_IsFileWritable($lc_GetHomePath) || lc_IsFileWritable($filename_html) ){ 
+		$LCZ_GetHomePath = LCZ_GetHomePath();
+		$filename_html = $LCZ_GetHomePath.'sitemap.html';
+		if( LCZ_IsFileWritable($LCZ_GetHomePath) || LCZ_IsFileWritable($filename_html) ){ 
 			file_put_contents("$filename_html","$html");
 			@chmod($filename_html, 0777);
 			/** Messages  **/
@@ -310,15 +310,15 @@ function build_baidu_sitemap_html(){
 }
 	
 
-function lc_text(){
+function LCZ_text(){
 	?>
 	<h3>PS:</h3>
 	<p>提醒：百度的ping服务地址早就有了。可以把它加入ping服务列表，加快百度的收录速度。百度的ping服务地址：http://ping.baidu.com/ping/RPC2</p>
 	<?php
 }
 
-function lc_for_SAE(){
-	if(lc_IS_SAE()) : 
+function LCZ_for_SAE(){
+	if(LCZ_IS_SAE()) : 
 	?>
 	<h3>SAE环境:</h3>
 	<p>提醒：如果是用SAE平台，打开网站根目录下的config.yaml加入两行代码</p>
@@ -356,5 +356,4 @@ add_action('init','baidu_sitemap_is_auto_daily',1001,0);
 /** load the language file **/
 add_filter('init','load_baidu_language');
 
-//add_action('wp_footer','the_lc_support');
 ?>
