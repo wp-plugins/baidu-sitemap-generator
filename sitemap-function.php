@@ -3,7 +3,7 @@
 $lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.45';
+$lc_pluginversion = '1.50';
 $lc_pluginurl = 'http://liucheng.name/2113/';
 
 /**  End **/
@@ -420,16 +420,15 @@ function xml_file_exist() {
 		$filemtime=date("Y-m-d H:i:s",filemtime("$filename")); 
 		//$fileatime=date("Y-m-d H:i:s",fileatime("$filename")); 
 		echo "<p>";
-		_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page.','baidu_sitemap');
+		#_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
 		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap_baidu.xml'.'" target="_blank">'.$lc_blog_url.'/sitemap_baidu.xml'.'</a></p>';
-		echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
-		echo '<p>'; _e('Add to robots.txt:','baidu_sitemap'); print '<b>Sitemap: '.$lc_blog_url.'/sitemap_baidu.xml</b></p>';
+		#echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '';
 	}else{
 		_e('Baidu Sitemap File is not Exist, please Write a normal XML file.','baidu_sitemap');
 	}
-	$sitemap_html = LCZ_GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.html'.'" target="_blank">'.$lc_blog_url.'/sitemap.html'.'</a></p>'; echo '<p>'; _e('add a link in Homepage or Anywhere you want.','baidu_sitemap'); print '</p>'; }
+	$sitemap_html = LCZ_GetHomePath().'sitemap.html'; if(file_exists($sitemap_html)) { echo '<p>'; _e('Check SiteMap Html: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.html'.'" target="_blank">'.$lc_blog_url.'/sitemap.html'.'</a></p>'; }
 	echo '</div>';
 }
 function xml_annotate() {
@@ -449,8 +448,14 @@ function LCZ_GetTimestampFromMySql($mysqlDateTime) {
 
 function LCZ_IS_SAE(){
 	//[sae]判断是否运行在SAE上。
-	$LCZ_IS_SAE = SAE_MYSQL_DB;
+	/*$LCZ_IS_SAE = SAE_MYSQL_DB;
 	if($LCZ_IS_SAE && $LCZ_IS_SAE!='SAE_MYSQL_DB'){
+		return true;
+	}else{
+		return false;
+	}*/
+	$array_baidu_sitemap_options = get_baidu_sitemap_options();
+	if($array_baidu_sitemap_options['is_sina_sae']){
 		return true;
 	}else{
 		return false;

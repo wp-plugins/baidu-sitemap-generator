@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name:Baidu Sitemap Generator
-Plugin URI: http://liucheng.name/883/
+Plugin URI: http://liucheng.name/2113/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.45
+Version: 1.50
 Author URI: http://liucheng.name/
 */
 
@@ -32,11 +31,14 @@ function get_baidu_sitemap_options(){
 	$array_baidu_sitemap_options = array();
 	$get_baidu_sitemap_options = get_option(NEW_BAIDU_SITEMAP_OPTION);
 	if( $get_baidu_sitemap_options ){
-		list( $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'], $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'], $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'], $array_baidu_sitemap_options['lc_post_limit1000'], $array_baidu_sitemap_options['lc_is_ping'] ) = explode("|",$get_baidu_sitemap_options);
+		list( $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'], $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'], $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'], $array_baidu_sitemap_options['lc_post_limit1000'], $array_baidu_sitemap_options['lc_post_select'], $array_baidu_sitemap_options['lc_page_select'], $array_baidu_sitemap_options['lc_category_select'], $array_baidu_sitemap_options['lc_tag_select'], $array_baidu_sitemap_options['is_sina_sae']) = explode("|",$get_baidu_sitemap_options);
 	}else{
 		if( !$array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'] ){ $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'] = '1'; }
 		if( !$array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] ){ $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] = '1'; }
 		if( !$array_baidu_sitemap_options['lc_post_limit1000'] ){ $array_baidu_sitemap_options['lc_post_limit1000'] = '1'; }
+		if( !$array_baidu_sitemap_options['lc_post_select'] ){ $array_baidu_sitemap_options['lc_post_select'] = '1'; }
+		if( !$array_baidu_sitemap_options['lc_page_select'] ){ $array_baidu_sitemap_options['lc_page_select'] = '1'; }
+		if( !$array_baidu_sitemap_options['lc_category_select'] ){ $array_baidu_sitemap_options['lc_category_select'] = '1'; }
 	}
 	return $array_baidu_sitemap_options;
 }
@@ -60,6 +62,11 @@ function baidu_sitemap_form() {
 				<tr><td><?php _e('Enabled Html Sitemap','baidu_sitemap');?></td><td><input type="checkbox" name="lc_is_Enabled_Html_Sitemap" value="1" <?php if( $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'] ) { echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
 				<tr><td><?php _e('Update Sitemap when Publish Post','baidu_sitemap');?></td><td><input type="checkbox" name="lc_is_update_sitemap_when_post" value="1" <?php if( $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] ) { echo 'checked="checked"'; } ?> /></td></tr>
 				<tr><td><?php _e('Post Limit 1000','baidu_sitemap');?></td><td><input type="checkbox" name="lc_post_limit1000" value="1" <?php if( $array_baidu_sitemap_options['lc_post_limit1000'] ) { echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('XML file just need include the Recent Post and Update Post. Needs much more memory if increase the Post Count.','baidu_sitemap');?>">[?]</a><td></tr>
+				<tr><td>锭接包括：</td><td><input type="checkbox" name="lc_post_select" value="1" <?php if( $array_baidu_sitemap_options['lc_post_select'] ) { echo 'checked="checked"'; } ?> readonly />文章</td></tr>
+				<tr><td></td><td><input type="checkbox" name="lc_page_select" value="1" <?php if( $array_baidu_sitemap_options['lc_page_select'] ) { echo 'checked="checked"'; } ?> />页面</td></tr>
+				<tr><td></td><td><input type="checkbox" name="lc_category_select" value="1" <?php if( $array_baidu_sitemap_options['lc_category_select'] ) { echo 'checked="checked"'; } ?> />目录</td></tr>
+				<tr><td></td><td><input type="checkbox" name="lc_tag_select" value="1" <?php if( $array_baidu_sitemap_options['lc_tag_select'] ) { echo 'checked="checked"'; } ?> />标签</td></tr>
+				<tr><td><?php _e('sina sae','baidu_sitemap');?></td><td><input type="checkbox" name="is_sina_sae" value="1" <?php if( $array_baidu_sitemap_options['is_sina_sae'] ) { echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('如果是新浪的SAE平台请打勾','baidu_sitemap');?>">[?]</a><td></tr>
 			</table>
 			<p class="submit"><input type="submit" class="button-primary" /></p>
 			</form>
@@ -129,7 +136,19 @@ function update_baidu_sitemap_options() {
 		if(!$lc_is_update_sitemap_when_post){ $lc_is_update_sitemap_when_post = 0; }
 		$lc_post_limit1000 = $_POST['lc_post_limit1000'];
 		if(!$lc_post_limit1000){ $lc_post_limit1000 = 0; }
-		$baidu_sitemap_options = implode('|',array($lc_is_Enabled_XML_Sitemap, $lc_is_Enabled_Html_Sitemap, $lc_is_update_sitemap_when_post, $lc_post_limit1000));
+		################## NEW~
+		$lc_post_select = $_POST['lc_post_select'];
+		if(!$lc_post_select){ $lc_post_select = 1; }
+		$lc_page_select = $_POST['lc_page_select'];
+		if(!$lc_page_select){ $lc_page_select = 0; }
+		$lc_category_select = $_POST['lc_category_select'];
+		if(!$lc_category_select){ $lc_category_select = 0; }
+		$lc_tag_select = $_POST['lc_tag_select'];
+		if(!$lc_tag_select){ $lc_tag_select = 0; }
+		##################
+		$is_sina_sae = $_POST['is_sina_sae'];
+		if(!$is_sina_sae){ $is_sina_sae = 0; }
+		$baidu_sitemap_options = implode('|',array($lc_is_Enabled_XML_Sitemap, $lc_is_Enabled_Html_Sitemap, $lc_is_update_sitemap_when_post, $lc_post_limit1000, $lc_post_select, $lc_page_select, $lc_category_select, $lc_tag_select, $is_sina_sae));
 		update_option(NEW_BAIDU_SITEMAP_OPTION,$baidu_sitemap_options); 
         baidu_sitemap_topbarmessage(__('Congratulate, Update options success','baidu_sitemap'));
 	}
@@ -143,20 +162,23 @@ function build_baidu_sitemap() {
 	if($array_baidu_sitemap_options['lc_post_limit1000']){ $lc_limit = '1000'; } else { $lc_limit = '10000'; }
 
     ## $lc_contents , $lc_limit = '1000'
-	$sql_mini = "select ID,post_modified_gmt,post_date_gmt,post_type FROM $wpdb->posts
+	$sql_mini = "select ID,post_modified,post_date,post_type FROM $wpdb->posts
 	        WHERE post_password = ''
-			AND (post_type != 'revision' AND post_type != 'attachment' AND post_type != 'nav_menu_item')
+			AND (post_type='post' or post_type='page')
 			AND post_status = 'publish'
-			ORDER BY post_modified_gmt DESC
+			ORDER BY post_modified DESC
 			LIMIT 0,$lc_limit
 	       ";
 	$recentposts_mini = $wpdb->get_results($sql_mini);
 	if($recentposts_mini){
 		foreach ($recentposts_mini as $post){
 			if( $post->post_type == 'page' ){
+				if(!$array_baidu_sitemap_options['lc_page_select']){ continue; } ###跳过
 				$loc = get_page_link($post->ID);
-				if($post->post_modified_gmt == '0000-00-00 00:00:00'){ $post_date_gmt = $post->post_date_gmt; } else { $post_date_gmt = $post->post_modified_gmt; } 
-				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date_gmt));
+				$loc = LCZ_EscapeXML($loc);
+				if(!$loc){ continue; }
+				if($post->post_modified == '0000-00-00 00:00:00'){ $post_date = $post->post_date; } else { $post_date = $post->post_modified; } 
+				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date));
 				$changefreq = 'weekly';
 				$priority = '0.3';
 				$xml_contents_page .= "<url>";
@@ -166,9 +188,12 @@ function build_baidu_sitemap() {
 				$xml_contents_page .= "<priority>$priority</priority>";
 				$xml_contents_page .= "</url>";
 			}else{
+				if(!$array_baidu_sitemap_options['lc_post_select']){ continue; } ###跳过
 				$loc = get_permalink($post->ID);
-				if($post->post_modified_gmt == '0000-00-00 00:00:00'){ $post_date_gmt = $post->post_date_gmt; } else { $post_date_gmt = $post->post_modified_gmt; } 
-				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date_gmt));
+				$loc = LCZ_EscapeXML($loc);
+				if(!$loc){ continue; }
+				if($post->post_modified == '0000-00-00 00:00:00'){ $post_date = $post->post_date; } else { $post_date = $post->post_modified; } ##$post->post_date_gmt
+				$lastmod = date("Y-m-d\TH:i:s+00:00",LCZ_GetTimestampFromMySql($post_date));
 				$changefreq = 'monthly';
 				$priority = '0.6';
 				$xml_contents_post .= "<url>";
@@ -180,21 +205,50 @@ function build_baidu_sitemap() {
 			}
 		}
 		## get_category_link
-		$category_ids = get_all_category_ids();
-		foreach($category_ids as $cat_id) {
-			$loc = get_category_link($cat_id);
-			$lastmod = date("Y-m-d\TH:i:s+00:00",current_time('timestamp', '1'));
-			$changefreq = 'Weekly';
-			$priority = '0.3';
-			$xml_contents_cat .= "<url>";
-			$xml_contents_cat .= "<loc>$loc</loc>";
-			$xml_contents_cat .= "<lastmod>$lastmod</lastmod>";
-			$xml_contents_cat .= "<changefreq>$changefreq</changefreq>";
-			$xml_contents_cat .= "<priority>$priority</priority>";
-			$xml_contents_cat .= "</url>";
+		if($array_baidu_sitemap_options['lc_category_select']){ 
+			$category_ids = get_all_category_ids();
+			if($category_ids){
+				foreach($category_ids as $cat_id) {
+					$loc = get_category_link($cat_id);
+					$loc = LCZ_EscapeXML($loc);
+					if(!$loc){ continue; }
+					$lastmod = date("Y-m-d\TH:i:s+00:00",current_time('timestamp', '1'));
+					$changefreq = 'Weekly';
+					$priority = '0.3';
+					$xml_contents_cat .= "<url>";
+					$xml_contents_cat .= "<loc>$loc</loc>";
+					$xml_contents_cat .= "<lastmod>$lastmod</lastmod>";
+					$xml_contents_cat .= "<changefreq>$changefreq</changefreq>";
+					$xml_contents_cat .= "<priority>$priority</priority>";
+					$xml_contents_cat .= "</url>";
+				}
+			}
 		}
 		##
-		$xml_contents = $xml_contents_post.$xml_contents_page.$xml_contents_cat;
+
+		###tag
+		if($array_baidu_sitemap_options['lc_tag_select']){
+			$all_the_tags = get_tags();
+			if($all_the_tags){
+				foreach($all_the_tags as $this_tag) {
+					$tag_id = $this_tag->term_id;
+					$loc = get_tag_link($tag_id);
+					$loc = LCZ_EscapeXML($loc);
+					if(!$loc){ continue; }
+					$lastmod = date("Y-m-d\TH:i:s+00:00",current_time('timestamp', '1'));
+					$changefreq = 'Weekly';
+					$priority = '0.3';
+					$xml_contents_tag .= "<url>";
+					$xml_contents_tag .= "<loc>$loc</loc>";
+					$xml_contents_tag .= "<lastmod>$lastmod</lastmod>";
+					$xml_contents_tag .= "<changefreq>$changefreq</changefreq>";
+					$xml_contents_tag .= "<priority>$priority</priority>";
+					$xml_contents_tag .= "</url>";
+				}
+			}
+		}
+		###end tag
+		$xml_contents = $xml_contents_post.$xml_contents_page.$xml_contents_cat.$xml_contents_tag;
 	}
 
 
@@ -238,6 +292,7 @@ function build_baidu_sitemap_xml($xml_contents){
 }
 function build_baidu_sitemap_html(){
 	global $wpdb;
+	$array_baidu_sitemap_options = get_baidu_sitemap_options();
 
 	/** Get the current time **/
 	$blogtime = current_time('mysql'); 
@@ -247,9 +302,9 @@ function build_baidu_sitemap_html(){
 	$html_contents = '';
 	$sql_html = "select ID FROM $wpdb->posts
 	        WHERE post_password = ''
-			AND (post_type != 'revision' AND post_type != 'attachment' AND post_type != 'nav_menu_item' AND post_type != 'page')
+			AND post_type='post'
 			AND post_status = 'publish'
-			ORDER BY post_modified_gmt DESC
+			ORDER BY post_modified DESC
 			LIMIT 0,1000
 	       ";
 	$recentposts_html = $wpdb->get_results($sql_html);
@@ -264,8 +319,16 @@ function build_baidu_sitemap_html(){
 	//$html_contents .= '<li><a href="'.get_permalink().'" title="'.get_the_title().'" target="_blank">'.get_the_title().'</a></li>';
 	//endwhile;
 
-	$html_category_contents = wp_list_categories('echo=0');
-	$html_page_contents = wp_list_pages('echo=0');
+    if($array_baidu_sitemap_options['lc_category_select']){ 
+		$html_category_contents = wp_list_categories('echo=0');
+	}
+	if($array_baidu_sitemap_options['lc_page_select']){ 
+		$html_page_contents = wp_list_pages('echo=0');
+	}
+	if($array_baidu_sitemap_options['lc_tag_select']){ 
+		$html_tag_contents = wp_tag_cloud('echo=0&number=245');
+		$html_tag_contents = '<br /><h3>Tag Cloud</h3>'.$html_tag_contents;
+	}
 
 
 	$blog_title = __('SiteMap','baidu_sitemap');
@@ -298,6 +361,7 @@ function build_baidu_sitemap_html(){
 		$html = str_replace("%contents%",$html_contents,$html);
 		$html = str_replace("%Lc_category_contents%",$html_category_contents,$html);
 		$html = str_replace("%Lc_page_contents%",$html_page_contents,$html);
+		$html = str_replace("%Lc_tag_contents%",$html_tag_contents,$html);
 		$LCZ_GetHomePath = LCZ_GetHomePath();
 		$filename_html = $LCZ_GetHomePath.'sitemap.html';
 		if( LCZ_IsFileWritable($LCZ_GetHomePath) || LCZ_IsFileWritable($filename_html) ){ 
@@ -342,7 +406,7 @@ function baidu_sitemap_by_post($post_ID) {
 	if($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'] == '1'){
 		   wp_clear_scheduled_hook('do_baidu_sitemap_by_post');
 		   wp_clear_scheduled_hook('do_this_auto_daily');
-		   wp_schedule_single_event(time()+30, 'do_baidu_sitemap_by_post'); 
+		   wp_schedule_single_event(time()+10, 'do_baidu_sitemap_by_post'); 
 	}
 	return $post_ID;
 }
