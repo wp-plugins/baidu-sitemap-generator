@@ -1,8 +1,8 @@
-﻿===Baidu Sitemap Generator===
+===Baidu Sitemap Generator===
 Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
-Tested up to: 3.80
+Tested up to: 4.2
 Stable tag: trunk
 
 Baidu Sitemap Generator
@@ -20,11 +20,18 @@ Related Links:
 * <a href="http://liucheng.name/2113/">Suggest a Feature</a>
 * <a href="http://zhanzhang.baidu.com/">百度站长平台</a>
 
+V1.6.0
+1. 修复已知的BUG
+2. 支持wordpress4.0+版本
+
+V1.51
+1，修复已知的BUG
+2. 支持wordpress3.8.1版本
 
 V1.50
 1，修复常见的BUG
 2，优化SAE环境
-3. 支持wordpress3.80版本
+3. 支持wordpress3.7.1版本
 
 
 V1.44 ~ v1.46

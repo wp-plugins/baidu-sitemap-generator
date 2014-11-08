@@ -4,7 +4,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/2113/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.50
+Version: 1.6.0
 Author URI: http://liucheng.name/
 */
 
@@ -155,7 +155,7 @@ function update_baidu_sitemap_options() {
 }
 
 
-/** build the XML file, sitemap_baidu.xml **/
+/** build the XML file, sitemap.xml **/
 function build_baidu_sitemap() {
     global $wpdb, $posts;
 	$array_baidu_sitemap_options = get_baidu_sitemap_options();
@@ -278,7 +278,11 @@ function build_baidu_sitemap_xml($xml_contents){
 
 		/** save XML file as sitemap_baidu.xml **/
 		$LCZ_GetHomePath = LCZ_GetHomePath();
-		$filename = $LCZ_GetHomePath.'sitemap_baidu.xml';
+		$filename = $LCZ_GetHomePath.'sitemap.xml';
+		$old_filename = $LCZ_GetHomePath.'sitemap_baidu.xml';
+		if(file_exists($old_filename)){
+			unlink($old_filename);  ####旧的文件名弃用了
+		}
 		if( LCZ_IsFileWritable($LCZ_GetHomePath) || LCZ_IsFileWritable($filename) ){ 
 			file_put_contents("$filename","$baidu_xml"); 
 			@chmod($filename, 0777);
@@ -305,7 +309,7 @@ function build_baidu_sitemap_html(){
 			AND post_type='post'
 			AND post_status = 'publish'
 			ORDER BY post_modified DESC
-			LIMIT 0,1000
+			LIMIT 0,2000
 	       ";
 	$recentposts_html = $wpdb->get_results($sql_html);
 	if($recentposts_html){
@@ -377,7 +381,7 @@ function build_baidu_sitemap_html(){
 function LCZ_text(){
 	?>
 	<h3>PS:</h3>
-	<p>提醒：百度的ping服务地址早就有了。可以把它加入ping服务列表，加快百度的收录速度。百度的ping服务地址：http://ping.baidu.com/ping/RPC2</p>
+	<p>提醒：百度的ping服务地址：http://ping.baidu.com/ping/RPC2, 把它加入ping服务列表，加快百度的收录速度。</p>
 	<?php
 }
 
@@ -387,7 +391,7 @@ function LCZ_for_SAE(){
 	<h3>SAE环境:</h3>
 	<p>提醒：如果是用SAE平台，打开网站根目录下的config.yaml加入两行代码</p>
 	<pre>
-	- rewrite:  if ( path ~ "sitemap_baidu.xml" ) goto "wp-content/plugins/baidu-sitemap-generator/SAE_xml.php"
+	- rewrite:  if ( path ~ "sitemap.xml" ) goto "wp-content/plugins/baidu-sitemap-generator/SAE_xml.php"
 	- rewrite:  if ( path ~ "sitemap.html" ) goto "wp-content/plugins/baidu-sitemap-generator/SAE_html.php"
 	</pre>
 	<?php
@@ -403,15 +407,21 @@ function baidu_sitemap_is_auto_daily() {
 
 function baidu_sitemap_by_post($post_ID) {
 	$get_baidu_sitemap_options = get_option(NEW_BAIDU_SITEMAP_OPTION);
-	if($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'] == '1'){
-		   wp_clear_scheduled_hook('do_baidu_sitemap_by_post');
-		   wp_clear_scheduled_hook('do_this_auto_daily');
-		   wp_schedule_single_event(time()+10, 'do_baidu_sitemap_by_post'); 
+	if(isset($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'])){
+		if($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'] == '1'){
+			   wp_clear_scheduled_hook('do_baidu_sitemap_by_post');
+			   wp_clear_scheduled_hook('do_this_auto_daily');
+			   wp_schedule_single_event(time()+5, 'do_baidu_sitemap_by_post'); 
+		}
 	}
 	return $post_ID;
 }
 
 add_action('publish_post', 'baidu_sitemap_by_post');
+add_action('save_post', 'baidu_sitemap_by_post');
+add_action('edit_post', 'baidu_sitemap_by_post');
+add_action('delete_post', 'baidu_sitemap_by_post');
+
 add_action('do_baidu_sitemap_by_post','build_baidu_sitemap',2,0); 
 
 /** Tie the module into Wordpress **/
