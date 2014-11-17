@@ -20,6 +20,10 @@ Related Links:
 * <a href="http://liucheng.name/2113/">Suggest a Feature</a>
 * <a href="http://zhanzhang.baidu.com/">百度站长平台</a>
 
+V1.6.1
+
+1. fix BUG.
+
 V1.6.0
 1. 修复已知的BUG
 2. 支持wordpress4.0+版本
