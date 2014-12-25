@@ -426,7 +426,7 @@ add_action('do_baidu_sitemap_by_post','build_baidu_sitemap',2,0);
 
 /** Tie the module into Wordpress **/
 add_action('admin_menu','baidu_sitemap_menu');
-add_action('init','baidu_sitemap_is_auto_daily',1001,0);
+#add_action('init','baidu_sitemap_is_auto_daily',1001,0);
 /** load the language file **/
 add_filter('init','load_baidu_language');
 
