@@ -2,7 +2,7 @@
 Contributors: 柳城
 Tags: Baidu,XML,Sitemap
 Requires at least: 2.7
-Tested up to: 4.2
+Tested up to: 4.0
 Stable tag: trunk
 
 Baidu Sitemap Generator
