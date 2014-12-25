@@ -23,6 +23,7 @@ Related Links:
 V1.6.2
 
 1. fix BUG.
+2. 不支持wordpress4.1
 
 V1.6.1
 
