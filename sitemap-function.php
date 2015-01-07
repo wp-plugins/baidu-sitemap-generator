@@ -3,7 +3,7 @@
 $lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.6.3';
+$lc_pluginversion = '1.6.4';
 $lc_pluginurl = 'http://liucheng.name/2113/';
 
 /**  End **/
@@ -409,9 +409,10 @@ function LCZ_rebuild_message() {
 				}
 }
 function xml_file_exist() {
+	$array_baidu_sitemap_options = get_baidu_sitemap_options();
 	$lc_blog_url = home_url();
 	$fileName = LCZ_GetHomePath();
-	$filename = $fileName.'sitemap.xml';
+	$filename = $fileName.$array_baidu_sitemap_options['lc_XML_FileName'].'.xml';;
 	echo '<div class="tool-box">';
 	echo '<h3 class="title">';
 	_e('XML File Status','baidu_sitemap');
@@ -423,7 +424,7 @@ function xml_file_exist() {
 		echo "<p>";
 		#_e('When you change Path of the XML file(Better not). please use 301 redirect to the new XML-file, or setting as 404 page.','baidu_sitemap');
 		echo "</p>";
-		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/sitemap.xml'.'" target="_blank">'.$lc_blog_url.'/sitemap.xml'.'</a></p>';
+		echo '<p>'; _e('Check XML-sitemap File: ','baidu_sitemap'); echo '<a href="'.$lc_blog_url.'/'.$array_baidu_sitemap_options['lc_XML_FileName'].'.xml'.'" target="_blank">'.$lc_blog_url.'/'.$array_baidu_sitemap_options['lc_XML_FileName'].'.xml'.'</a></p>';
 		#echo '<p>'; _e('Last updated: ','baidu_sitemap'); print $filemtime.'</p>';
 		echo '';
 	}else{
