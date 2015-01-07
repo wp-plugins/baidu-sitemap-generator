@@ -4,7 +4,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/2113/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.6.2
+Version: 1.6.3
 Author URI: http://liucheng.name/
 */
 
@@ -31,8 +31,9 @@ function get_baidu_sitemap_options(){
 	$array_baidu_sitemap_options = array();
 	$get_baidu_sitemap_options = get_option(NEW_BAIDU_SITEMAP_OPTION);
 	if( $get_baidu_sitemap_options ){
-		list( $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'], $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'], $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'], $array_baidu_sitemap_options['lc_post_limit1000'], $array_baidu_sitemap_options['lc_post_select'], $array_baidu_sitemap_options['lc_page_select'], $array_baidu_sitemap_options['lc_category_select'], $array_baidu_sitemap_options['lc_tag_select'], $array_baidu_sitemap_options['is_sina_sae']) = explode("|",$get_baidu_sitemap_options);
+		list( $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'], $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'], $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'], $array_baidu_sitemap_options['lc_post_limit1000'], $array_baidu_sitemap_options['lc_post_select'], $array_baidu_sitemap_options['lc_page_select'], $array_baidu_sitemap_options['lc_category_select'], $array_baidu_sitemap_options['lc_tag_select'], $array_baidu_sitemap_options['is_sina_sae'], $array_baidu_sitemap_options['lc_XML_FileName']) = explode("|",$get_baidu_sitemap_options);
 	}else{
+		if( !$array_baidu_sitemap_options['lc_XML_FileName'] ){ $array_baidu_sitemap_options['lc_XML_FileName'] = 'sitemap_baidu'; }
 		if( !$array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'] ){ $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'] = '1'; }
 		if( !$array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] ){ $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] = '1'; }
 		if( !$array_baidu_sitemap_options['lc_post_limit1000'] ){ $array_baidu_sitemap_options['lc_post_limit1000'] = '1'; }
@@ -58,6 +59,9 @@ function baidu_sitemap_form() {
 			<input type="hidden" name="action" value="build_options" />
 			<table>
 				<tr><td><h3><?php _e('General Options','baidu_sitemap');?></h3></td></tr>
+				<tr><td><?php _e('XML FileName','baidu_sitemap');?></td><td><input type="radio" name="lc_XML_FileName" value="sitemap_baidu" <?php if( $array_baidu_sitemap_options['lc_XML_FileName']=='sitemap_baidu' ) { echo 'checked="checked"'; } ?> />sitemap_baidu</td></tr>
+				<tr><td></td><td><input type="radio" name="lc_XML_FileName" value="sitemap" <?php if( $array_baidu_sitemap_options['lc_XML_FileName']=='sitemap' ) { echo 'checked="checked"'; } ?> />sitemap</td></tr>
+
 				<tr><td><?php _e('Enabled XML Sitemap','baidu_sitemap');?></td><td><input type="checkbox" name="lc_is_Enabled_XML_Sitemap" value="1" <?php if( $array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap'] ) { echo 'checked="checked"'; } ?> /></td></tr>
 				<tr><td><?php _e('Enabled Html Sitemap','baidu_sitemap');?></td><td><input type="checkbox" name="lc_is_Enabled_Html_Sitemap" value="1" <?php if( $array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap'] ) { echo 'checked="checked"'; } ?> /></td><td><a title="<?php _e('Also Build a real Static Sitemap-Page for all Search Engine.','baidu_sitemap');?>">[?]</a><td></tr>
 				<tr><td><?php _e('Update Sitemap when Publish Post','baidu_sitemap');?></td><td><input type="checkbox" name="lc_is_update_sitemap_when_post" value="1" <?php if( $array_baidu_sitemap_options['lc_is_update_sitemap_when_post'] ) { echo 'checked="checked"'; } ?> /></td></tr>
@@ -148,7 +152,10 @@ function update_baidu_sitemap_options() {
 		##################
 		$is_sina_sae = $_POST['is_sina_sae'];
 		if(!$is_sina_sae){ $is_sina_sae = 0; }
-		$baidu_sitemap_options = implode('|',array($lc_is_Enabled_XML_Sitemap, $lc_is_Enabled_Html_Sitemap, $lc_is_update_sitemap_when_post, $lc_post_limit1000, $lc_post_select, $lc_page_select, $lc_category_select, $lc_tag_select, $is_sina_sae));
+
+		$lc_XML_FileName = $_POST['lc_XML_FileName'];
+		if(!$lc_XML_FileName){ $lc_XML_FileName = 'sitemap_baidu'; }
+		$baidu_sitemap_options = implode('|',array($lc_is_Enabled_XML_Sitemap, $lc_is_Enabled_Html_Sitemap, $lc_is_update_sitemap_when_post, $lc_post_limit1000, $lc_post_select, $lc_page_select, $lc_category_select, $lc_tag_select, $is_sina_sae, $lc_XML_FileName));
 		update_option(NEW_BAIDU_SITEMAP_OPTION,$baidu_sitemap_options); 
         baidu_sitemap_topbarmessage(__('Congratulate, Update options success','baidu_sitemap'));
 	}
@@ -261,11 +268,9 @@ function build_baidu_sitemap() {
 		build_baidu_sitemap_html();
 	}
 
-
-	if(function_exists('wp_clear_scheduled_hook')) { wp_clear_scheduled_hook('do_baidu_sitemap_by_post'); }
-    //baidu_sitemap_is_auto_daily(); 
 }
 function build_baidu_sitemap_xml($xml_contents){
+	$array_baidu_sitemap_options = get_baidu_sitemap_options();
 	$lc_blog_url = home_url();
 	$blogtime = current_time('timestamp', '1');
 	$lc_blog_time = date("Y-m-d\TH:i:s+00:00",$blogtime);
@@ -278,11 +283,7 @@ function build_baidu_sitemap_xml($xml_contents){
 
 		/** save XML file as sitemap_baidu.xml **/
 		$LCZ_GetHomePath = LCZ_GetHomePath();
-		$filename = $LCZ_GetHomePath.'sitemap.xml';
-		$old_filename = $LCZ_GetHomePath.'sitemap_baidu.xml';
-		if(file_exists($old_filename)){
-			unlink($old_filename);  ####旧的文件名弃用了
-		}
+		$filename = $LCZ_GetHomePath.$array_baidu_sitemap_options['lc_XML_FileName'].'.xml';
 		if( LCZ_IsFileWritable($LCZ_GetHomePath) || LCZ_IsFileWritable($filename) ){ 
 			file_put_contents("$filename","$baidu_xml"); 
 			@chmod($filename, 0777);
@@ -343,6 +344,7 @@ function build_baidu_sitemap_html(){
 	$lc_copyright = 'Liucheng.Name';
 	$blog_home = get_bloginfo('url');
 	$sitemap_url = get_bloginfo('url').'/sitemap.html';
+	$xml_url = get_bloginfo('url').'/'.$array_baidu_sitemap_options['lc_XML_FileName'].'.xml';
 	$recentpost = __('RecentPost','baidu_sitemap');
 	$footnote = __('HomePage','baidu_sitemap');
 	$updated_time = "$today_year-$today_month-$today_day $hour:$minute:$second";
@@ -359,6 +361,7 @@ function build_baidu_sitemap_html(){
 		$html = str_replace("%lc_author%",$lc_author,$html);
 		$html = str_replace("%lc_copyright%",$lc_copyright,$html);
 		$html = str_replace("%sitemap_url%",$sitemap_url,$html);
+		$html = str_replace("%blog_sitemap%",$xml_url,$html);
 		$html = str_replace("%footnote%",$footnote,$html);
 		$html = str_replace("%RecentPost%",$recentpost,$html);
 		$html = str_replace("%updated_time%",$updated_time,$html);
@@ -399,19 +402,20 @@ function LCZ_for_SAE(){
 }
 
 ## Auto
+add_action( 'wp', 'do_baidu_sitemap_auto_daily' );
 function baidu_sitemap_is_auto_daily() {
-	$lc_updatePeri = 60*60*24;
-	wp_schedule_single_event(time()+$lc_updatePeri, 'do_this_auto_daily'); 
-	add_action('do_this_auto_daily','build_baidu_sitemap',2,0); 
+	if ( ! wp_next_scheduled( 'do_baidu_sitemap_auto_daily' ) ) {
+		wp_schedule_event( time(), 'daily', 'do_baidu_sitemap_auto_daily');
+	}
 }
+add_action('do_baidu_sitemap_auto_daily','build_baidu_sitemap');
+
 
 function baidu_sitemap_by_post($post_ID) {
 	$get_baidu_sitemap_options = get_option(NEW_BAIDU_SITEMAP_OPTION);
 	if(isset($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'])){
 		if($get_baidu_sitemap_options['lc_is_update_sitemap_when_post'] == '1'){
-			   wp_clear_scheduled_hook('do_baidu_sitemap_by_post');
-			   wp_clear_scheduled_hook('do_this_auto_daily');
-			   wp_schedule_single_event(time()+5, 'do_baidu_sitemap_by_post'); 
+			  build_baidu_sitemap();
 		}
 	}
 	return $post_ID;
@@ -422,7 +426,6 @@ add_action('save_post', 'baidu_sitemap_by_post');
 add_action('edit_post', 'baidu_sitemap_by_post');
 add_action('delete_post', 'baidu_sitemap_by_post');
 
-add_action('do_baidu_sitemap_by_post','build_baidu_sitemap',2,0); 
 
 /** Tie the module into Wordpress **/
 add_action('admin_menu','baidu_sitemap_menu');

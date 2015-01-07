@@ -3,7 +3,7 @@
 $lc_author = 'liucheng.name';
 $lc_authorurl = 'http://liucheng.name/';
 $lc_plugin = 'Baidu Sitemap Generator';
-$lc_pluginversion = '1.6.2';
+$lc_pluginversion = '1.6.3';
 $lc_pluginurl = 'http://liucheng.name/2113/';
 
 /**  End **/
