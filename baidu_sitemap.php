@@ -4,7 +4,7 @@ Plugin Name:Baidu Sitemap Generator
 Plugin URI: http://liucheng.name/2113/
 Description: This pulgin generates a Baidu XML-Sitemap for WordPress Blog. Also Build a real Static Sitemap-Page for all Search Engine. | 生成百度 Sitemap XML 文件。就相当于网站被百度--全球最大的中文搜索引擎订阅，进而为您的网站带来潜在的流量。同时生成一个静态的站点地图页面，对所有的搜索引擎都有利。
 Author: 柳城
-Version: 1.6.4
+Version: 1.6.5
 Author URI: http://liucheng.name/
 */
 
@@ -107,7 +107,7 @@ function baidu_sitemap_optionpage()
       /** Perform any action **/
 		if(isset($_POST["action"])) {
 			if ($_POST["action"]=='build_options') {update_baidu_sitemap_options(); }
-		    if ($_POST["action"]=='build_xml') { build_baidu_sitemap();}
+		    if ($_POST["action"]=='build_xml') { build_baidu_sitemap($mes=1);}
 		}
 		
 		/** Definition **/
@@ -163,7 +163,7 @@ function update_baidu_sitemap_options() {
 
 
 /** build the XML file, sitemap.xml **/
-function build_baidu_sitemap() {
+function build_baidu_sitemap($mes=0) {
     global $wpdb, $posts;
 	$array_baidu_sitemap_options = get_baidu_sitemap_options();
 	if($array_baidu_sitemap_options['lc_post_limit1000']){ $lc_limit = '1000'; } else { $lc_limit = '10000'; }
@@ -261,7 +261,7 @@ function build_baidu_sitemap() {
 
 	## XML
 	if($array_baidu_sitemap_options['lc_is_Enabled_XML_Sitemap']){
-		build_baidu_sitemap_xml($xml_contents);
+		build_baidu_sitemap_xml($xml_contents,$mes);
 	}
 	## Html
 	if($array_baidu_sitemap_options['lc_is_Enabled_Html_Sitemap']){
@@ -269,7 +269,7 @@ function build_baidu_sitemap() {
 	}
 
 }
-function build_baidu_sitemap_xml($xml_contents){
+function build_baidu_sitemap_xml($xml_contents,$mes){
 	$array_baidu_sitemap_options = get_baidu_sitemap_options();
 	$lc_blog_url = home_url();
 	$blogtime = current_time('timestamp', '1');
@@ -288,10 +288,14 @@ function build_baidu_sitemap_xml($xml_contents){
 			file_put_contents("$filename","$baidu_xml"); 
 			@chmod($filename, 0777);
 			/** Messages  **/
+			if($mes){
 			baidu_sitemap_topbarmessage(__('Congratulate, Build the XML file success','baidu_sitemap'));
+			}
 		}else{ 
 			/** Messages  **/
+			if(!$mes){
 			baidu_sitemap_topbarmessage(__('Directory is not writable. please chmod your directory to 777.','baidu_sitemap'));
+			}
 		}
 	}
 }
